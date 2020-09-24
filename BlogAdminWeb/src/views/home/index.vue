@@ -4,7 +4,33 @@
 <template>
   <div class="home-container">
     <div class="home-navigation">
+      <el-row>
+        <el-col :span="4">
+          <img src="static/img/Logo.png" style="width: 80%;margin-top: 6%;margin-left: 5%">
+        </el-col>
+        <el-col :span="20">
+          <el-row class="navigation-bar">
+            <el-col :span="1">
+              <i class="el-icon-s-unfold"></i>
+            </el-col>
+            <el-col :span="21">
+              Dashboard
+            </el-col>
+            <el-col :span="1">
 
+              <el-dropdown>
+                <el-avatar shape="square" :size="50" style="margin-top: -23%;border: #8c8c8c solid 1px"
+                           src="static/img/ProfilePictureRectangle.png"></el-avatar>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>Profile</el-dropdown-item>
+                  <el-dropdown-item>Github</el-dropdown-item>
+                  <el-dropdown-item divided>Logout</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </el-col>
+          </el-row>
+        </el-col>
+      </el-row>
     </div>
     <div class="menu-bar">
       <el-col :span="24">
@@ -41,6 +67,14 @@
             </el-menu-item-group>
           </el-submenu>
           <el-menu-item index="3">
+            <i class="el-icon-setting"></i>
+            <span slot="title">Categories</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-setting"></i>
+            <span slot="title">Tags</span>
+          </el-menu-item>
+          <el-menu-item index="5">
             <i class="el-icon-setting"></i>
             <span slot="title">Setting</span>
           </el-menu-item>
@@ -95,7 +129,15 @@
     float: left;
     width: 100%;
     height: 8%;
-    background: black;
+    background: white;
+    border-bottom: #8c8c8c solid 1px;
+  }
+
+  .navigation-bar {
+    height: 100%;
+    margin-top: 2%;
+    color: #404040;
+    font-size: 30px;
   }
 
   .view-container {

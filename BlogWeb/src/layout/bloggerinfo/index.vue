@@ -5,8 +5,8 @@
   <div >
     <blogger-profile class="profile"></blogger-profile>
     <links></links>
-    <categories></categories>
-    <tags style="visibility: hidden"></tags>
+<!--    <categories  style="visibility: hidden" class="categories"></categories>-->
+    <tags class="all-tags"></tags>
   </div>
 </template>
 
@@ -27,6 +27,12 @@
     width: 100%;
     height: 300px;
     background-image: url("~@/assets/images/098x.jpg");
+  }
+.categories{
+  margin-top: 10%;
+}
+  .all-tags{
+    margin-top: 10%;
   }
 
 </style>

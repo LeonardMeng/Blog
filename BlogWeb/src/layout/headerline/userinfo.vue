@@ -3,12 +3,6 @@
 -->
 <template>
 <div class="userinfo">
-    <el-col :span="6">
-      <el-button round size="small" icon="el-icon-search">Sign Up</el-button>
-    </el-col>
-    <el-col :span="6">
-      <el-button round size="small" icon="el-icon-search">Sign In</el-button>
-    </el-col>
 
 </div>
 </template>

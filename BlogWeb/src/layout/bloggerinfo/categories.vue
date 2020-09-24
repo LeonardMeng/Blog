@@ -6,8 +6,8 @@
     :data="tableData"
     class="morelinks"
     style="border: none"
-    :header-cell-style="{background:'#343b3f',color:'white', border:'none'}"
-    :cell-style="{background:'black',color:'white', border:'none'}"
+    :header-cell-style="{background:'#f7f7f7',color:'#32373a', border:'#d8d8d8 solid 1px'}"
+    :cell-style="{background:'white',color:'#32373a', border:'#d8d8d8 solid 1px'}"
     row-key="id"
     default-expand-all
     :tree-props="{children: 'children', hasChildren: 'hasChildren'}"

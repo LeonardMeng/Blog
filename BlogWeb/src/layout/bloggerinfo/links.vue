@@ -6,8 +6,8 @@
     :data="tableData"
     class="morelinks"
     style="border: none"
-    :header-cell-style="{background:'#343b3f',color:'white', border:'none'}"
-    :cell-style="{background:'black',color:'white', border:'none'}"
+    :header-cell-style="{background:'#f7f7f7',color:'#32373a', border:'#d8d8d8 solid 1px'}"
+    :cell-style="{background:'white',color:'#32373a', border:'#d8d8d8 solid 0px'}"
     @row-click="JumptoLinks()">
     <el-table-column
       prop="date"
@@ -64,6 +64,7 @@
 <style scoped>
 .morelinks {
   width: 100%;
+  margin-top: 10%
 }
 .el-table::before {
   height: 0px;
