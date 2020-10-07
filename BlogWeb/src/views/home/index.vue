@@ -31,7 +31,6 @@
       searchByTag(tag){
         this.$refs.articleList.searchArticleByTag(tag)
       }
-
     }
   }
 </script>

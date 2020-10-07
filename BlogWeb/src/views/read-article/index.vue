@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import {getArticleContent} from '@/api/article'
+  import {getArticleContent, searchArticleByTag} from '@/api/article'
   import MarkdownItVue from 'markdown-it-vue'
   import 'markdown-it-vue/dist/markdown-it-vue.css'
   export default {
@@ -33,6 +33,19 @@
       this.getArticleContent()
     },
     methods: {
+      searchArticleByTag(i){
+        var param = {
+          keyword: i.tagName,
+          paging: {
+            currentPage: 1,
+            pageSize: 10,
+          }
+        }
+        searchArticleByTag(param).then(response => {
+          var data = response.data.articleList
+          this.articleList = data
+        })
+      },
       getArticleContent() {
         var param = {id: this.$route.params.id}
         getArticleContent(param).then(response => {

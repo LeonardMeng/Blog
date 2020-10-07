@@ -6,9 +6,10 @@
     <el-row class="article-list">
       All Posts
     </el-row>
-    <el-row class="article-items">
-      <article-abstract v-for="articleInfo in articleList" :key="articleInfo.id" :articleInfo="articleInfo">
-
+    <el-row class="article-items" v-loading="loading">
+      <article-abstract v-for="articleInfo in articleList"
+                        :key="articleInfo.id"
+                        :articleInfo="articleInfo">
       </article-abstract>
 
     </el-row>
@@ -17,11 +18,11 @@
           class="pagination"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage"
-          :page-sizes="[10, 20, 30, 40]"
-          :page-size="10"
+          :current-page="paging.currentPage"
+          :page-sizes="[5, 10, 15, 20]"
+          :page-size="paging.pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="40">
+          :total="paging.total">
       </el-pagination>
     </el-row>
 
@@ -29,9 +30,8 @@
 </template>
 
 <script>
-  import {getArticlesByBound} from '@/api/article'
-  import ArticleAbstract from "./articleabstract";
-  import {searchArticleByTag} from '@/api/article'
+  import {getArticlesByBound, searchArticleByTag} from '@/api/article'
+  import ArticleAbstract from "./articleabstract"
 
   export default {
     name: "ArticleList",
@@ -39,7 +39,13 @@
     data() {
       return {
         articleList: [],
-        currentPage: 1
+        currentPage: 1,
+        loading: false,
+        paging: {
+          total: 0,
+          currentPage: 1,
+          pageSize: 5
+        }
       }
     },
     mounted() {
@@ -53,21 +59,33 @@
 
       },
       searchArticleByTag(i){
+        this.loading = true
         var param = {
           keyword: i.tagName,
           paging: {
-            currentPage: 1,
-            pageSize: 10,
+            currentPage: this.paging.currentPage,
+            pageSize: this.paging.pageSize,
           }
         }
         searchArticleByTag(param).then(response => {
-          var data = response.data.articleList
-          this.articleList = data
+          var data = response.data
+          this.articleList = data.articleList
+          this.paging.total = data.paging.total
         })
+        this.loading = false
       },
       getArticlesByBound() {
-        getArticlesByBound(this.params).then(response => {
-          this.articleList = response.data
+        var param = {
+          keyword: '',
+          paging: {
+            currentPage: this.paging.currentPage,
+            pageSize: this.paging.pageSize,
+          }
+        }
+        getArticlesByBound(param).then(response => {
+          var data = response.data
+          this.articleList = data.articleList
+          this.paging.total = data.paging.total
         })
       }
     }

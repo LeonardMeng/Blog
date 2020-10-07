@@ -29,9 +29,16 @@ public class ArticleService {
     @Resource
     private ArticleMapper articleMapper;
 
-    public List<Article> GetArticlesByBound() {
-
-        return articleMapper.selectAll();
+    public Map<String, Object> GetArticlesByBound(SearchRequest searchRequest) {
+        Paging paging = searchRequest.getPaging();
+        Map<String, Integer> pagingMap = Tools.ConvertPaging(paging);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        List<Article> articleList = this.articleMapper.selectByRowBounds(new Article(),
+                new RowBounds(pagingMap.get("startNum"), pagingMap.get("endNum")));
+        paging.setTotal(this.articleMapper.selectCount(new Article()));
+        resultMap.put("articleList", articleList);
+        resultMap.put("paging", paging);
+        return resultMap;
     }
 
     public ArticleInfo GetArticleInfo(String id) throws IOException {
@@ -73,5 +80,9 @@ public class ArticleService {
         resultMap.put("paging", paging);
 
         return resultMap;
+    }
+
+    public Map<String, Object> SearchArticleByCategory(SearchRequest searchRequest) {
+        return null;
     }
 }

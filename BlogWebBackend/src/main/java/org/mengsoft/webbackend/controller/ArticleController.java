@@ -27,18 +27,17 @@ public class ArticleController {
     private ArticleService articleService;
 
     @RequestMapping(value="/article/getArticlesByBound", method= RequestMethod.POST, produces="application/json")
-    public List<Article> GetArticlesByBound(){
-        return this.articleService.GetArticlesByBound();
+    public Map<String, Object> GetArticlesByBound(@RequestBody SearchRequest searchRequest){
+        return this.articleService.GetArticlesByBound(searchRequest);
     }
 
     @RequestMapping(value="/article/searchArticleByCategory", method= RequestMethod.POST, produces="application/json")
-    public List<Article> SearchArticleByCategory(){
-        return this.articleService.GetArticlesByBound();
+    public Map<String, Object> SearchArticleByCategory(@RequestBody SearchRequest searchRequest){
+        return this.articleService.SearchArticleByCategory(searchRequest);
     }
 
     @RequestMapping(value="/article/searchArticleByTag", method= RequestMethod.POST, produces="application/json")
     public Map<String, Object> SearchArticleByTag(@RequestBody SearchRequest searchRequest){
-        System.out.println(searchRequest.toString());
         return this.articleService.SearchArticleByTag(searchRequest);
     }
 
