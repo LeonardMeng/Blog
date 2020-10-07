@@ -15,13 +15,9 @@ public class TagService {
     @Resource
     private TagMapper tagMapper;
 
-    public List<String> GetAllTags() {
-        List<String> tagNameList = new ArrayList<>();
+    public List<Tag> GetAllTags() {
         List<Tag> tagList = this.tagMapper.selectAll();
-        for(Tag t : tagList) {
-            tagNameList.add(t.getTagName());
-        }
-        return tagNameList;
+        return tagList;
     }
 
 }

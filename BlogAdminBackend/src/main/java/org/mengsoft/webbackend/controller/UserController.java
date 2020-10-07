@@ -56,6 +56,12 @@ public class UserController {
         return this.userService.GetUserByUsername(username);
     }
 
+    @RequestMapping(value="/user/login", method= RequestMethod.POST, produces="application/json")
+    public List<User> UserLogin(@RequestBody String username){
+        System.out.println(username);
+        return null;
+    }
+
     @RequestMapping(value="/user/error", method= RequestMethod.GET, produces="application/json")
     public double error(){
         return 9/0;

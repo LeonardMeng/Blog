@@ -7,6 +7,11 @@
         :data="visitDetail"
         style="width: 100%">
       <el-table-column
+          prop="date"
+          label="Date"
+          width="180">
+      </el-table-column>
+      <el-table-column
           prop="ip"
           label="IP"
           width="180">
@@ -29,7 +34,9 @@
   export default {
     name: "visits-detail-table",
     props: {
-      visitDetail: []
+      visitDetail: {
+        type: Array
+      }
     }
   }
 </script>

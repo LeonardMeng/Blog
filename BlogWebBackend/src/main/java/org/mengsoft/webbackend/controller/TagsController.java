@@ -22,8 +22,8 @@ public class TagsController {
     @Resource
     private TagService tagService;
 
-    @RequestMapping(value="/tag/getalltags", method= RequestMethod.GET, produces="application/json")
-    public List<String> GetUserByUsername(){
+    @RequestMapping(value="/tag/getalltags", method= RequestMethod.POST, produces="application/json")
+    public List<Tag> GetUserByUsername(){
         return this.tagService.GetAllTags();
     }
 }

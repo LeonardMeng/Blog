@@ -8,38 +8,89 @@
              text-color="white"
              active-text-color="white"
              @select="handleSelect">
-      <el-submenu style="height:52px"  index="2">
+      <el-submenu index="2">
         <template slot="title">Categories</template>
-        <el-menu-item  index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu  index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>
+        <navigation-item v-if="meniItemFlag" v-for="menu in menuList" :key="menu.path" :item="menu"/>
       </el-submenu>
+
     </el-menu>
   </div>
 
 </template>
 
 <script>
-    export default {
-        name: "GuideLine",
-      data() {
-        return {
-          activeIndex: '1',
-          activeIndex2: '1'
-        };
+  import NavigationItem from "./navigation-item";
+  import {getAllCategory} from '@/api/category'
+
+  export default {
+    name: "GuideLine",
+    components: {NavigationItem},
+    data() {
+      return {
+        activeIndex: '1',
+        activeIndex2: '1',
+        menuItems: [],
+        meniItemFlag: false,
+
+        menuList: []
+      }
+    },
+    created() {
+    },
+    mounted() {
+      this.GenerateMenu()
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
       },
-      methods: {
-        handleSelect(key, keyPath) {
-          console.log(key, keyPath);
-        }
+      GenerateMenu() {
+        var param = {username: 'LINGJUNM'}
+        getAllCategory(param).then(response => {
+          var maxLevel = 0
+          for (var i = 0; i < response.data.length; i++) {
+            if (maxLevel < response.data[i].level) maxLevel = response.data[i].level
+            if (response.data[i].father == '0') {
+              this.menuList.push({
+                path: '/' + response.data[i].id, id: response.data[i].id,
+                title: response.data[i].categoryName, children: [], father: response.data[i].father,
+                level: response.data[i].level
+              })
+            }
+          }
+          // console.log(this.GenerateMenu(data.data, '0', 1,maxLevel))
+          for (var i = 0; i < response.data.length; i++) {
+            for (var j = 0; j < this.menuList.length; j++) {
+              if (response.data[i].father == this.menuList[j].id && response.data[i].level == '2') {
+                this.menuList[j].children.push({
+                  path: '/' + response.data[i].id, id: response.data[i].id,
+                  title: response.data[i].categoryName, children: [], father: response.data[i].father,
+                  level: response.data[i].level
+                })
+              }
+
+            }
+          }
+          for (var i = 0; i < response.data.length; i++) {
+            for (var j = 0; j < this.menuList.length; j++) {
+              for (var k = 0; k < this.menuList[j].children.length; k++) {
+                if (response.data[i].father == this.menuList[j].children[k].id && response.data[i].level == '3') {
+
+                  this.menuList[j].children[k].children.push({
+                    path: '/' + response.data[i].id, id: response.data[i].id,
+                    title: response.data[i].categoryName, children: [], father: response.data[i].father,
+                    level: response.data[i].level
+                  })
+                }
+              }
+            }
+          }
+          this.meniItemFlag = true
+
+        })
       }
     }
+  }
 </script>
 
 <style scoped>
@@ -49,7 +100,12 @@
     margin-top: 1%;
     height: 30px;
   }
-  .el-submenu  /deep/ .el-submenu__title {
+
+  .guideline-menu {
+    width: 20%;
+  }
+
+  .el-submenu /deep/ .el-submenu__title {
     height: 52px !important;
   }
 

@@ -7,7 +7,9 @@
       All Posts
     </el-row>
     <el-row class="article-items">
-      <article-abstract v-for="i in list" :key="i"></article-abstract>
+      <article-abstract v-for="articleInfo in articleList" :key="articleInfo.id" :articleInfo="articleInfo">
+
+      </article-abstract>
 
     </el-row>
     <el-row class="article-items">
@@ -22,20 +24,26 @@
           :total="40">
       </el-pagination>
     </el-row>
+
   </div>
 </template>
 
 <script>
+  import {getArticlesByBound} from '@/api/article'
   import ArticleAbstract from "./articleabstract";
+  import {searchArticleByTag} from '@/api/article'
 
   export default {
     name: "ArticleList",
     components: {ArticleAbstract},
     data() {
       return {
-        list: [1, 2, 3, 4, 5],
+        articleList: [],
         currentPage: 1
       }
+    },
+    mounted() {
+      this.getArticlesByBound()
     },
     methods: {
       handleSizeChange() {
@@ -43,6 +51,24 @@
       },
       handleCurrentChange() {
 
+      },
+      searchArticleByTag(i){
+        var param = {
+          keyword: i.tagName,
+          paging: {
+            currentPage: 1,
+            pageSize: 10,
+          }
+        }
+        searchArticleByTag(param).then(response => {
+          var data = response.data.articleList
+          this.articleList = data
+        })
+      },
+      getArticlesByBound() {
+        getArticlesByBound(this.params).then(response => {
+          this.articleList = response.data
+        })
       }
     }
   }

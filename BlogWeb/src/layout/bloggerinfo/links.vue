@@ -16,10 +16,10 @@
      >
       <template slot-scope="scope">
         <el-row :gutter="20">
-          <el-col :span="12" >
+          <el-col :span="14" >
             <img  class="logo-left" :src="scope.row.date">
           </el-col>
-          <el-col :span="12">
+          <el-col :span="10" style="font-weight: bold">
             KanadeM
             <i class="el-icon-top-right"></i>
           </el-col>
@@ -43,13 +43,9 @@
             name: '王小虎',
             address: '上海市普陀区金沙江路 1517 弄'
           }, {
-            date: "static/img/github.png",
+            date: "static/img/Linkedin.png",
             name: '王小虎',
             address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: "static/img/github.png",
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
           }]
         }
       },
@@ -64,7 +60,6 @@
 <style scoped>
 .morelinks {
   width: 100%;
-  margin-top: 10%
 }
 .el-table::before {
   height: 0px;

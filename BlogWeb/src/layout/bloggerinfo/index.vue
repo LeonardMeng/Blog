@@ -4,9 +4,12 @@
 <template>
   <div >
     <blogger-profile class="profile"></blogger-profile>
+    <div class="">
+      <img class="certification" src="static/img/OCP.png">
+    </div>
     <links></links>
 <!--    <categories  style="visibility: hidden" class="categories"></categories>-->
-    <tags class="all-tags"></tags>
+    <tags class="all-tags" @searchByTag="searchByTag"></tags>
   </div>
 </template>
 
@@ -18,6 +21,11 @@
     export default {
         name: "index",
       components: {Tags, Categories, Links, BloggerProfile},
+      methods: {
+        searchByTag(tag) {
+          this.$emit('searchByTag', tag)
+        }
+      }
     }
 </script>
 
@@ -34,5 +42,7 @@
   .all-tags{
     margin-top: 10%;
   }
-
+  .certification{
+    width: 100%;
+  }
 </style>

@@ -9,14 +9,14 @@
       </div>
       <el-form-item prop="username">
         <el-input class="login-username"
-            ref="username"
-            prefix-icon="el-icon-user-solid"
-            v-model="loginForm.username"
-            placeholder="Username"
-            name="username"
-            type="text"
-            tabindex="1"
-            autocomplete="on"
+                  ref="username"
+                  prefix-icon="el-icon-user-solid"
+                  v-model="loginForm.username"
+                  placeholder="Username"
+                  name="username"
+                  type="text"
+                  tabindex="1"
+                  autocomplete="on"
         />
       </el-form-item>
       <el-form-item prop="password">
@@ -31,12 +31,16 @@
                   autocomplete="on"
         />
       </el-form-item>
-      <el-button :loading="loading" type="primary" style="width:80%;margin-left:10%;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:80%;margin-left:10%;"
+                 @click.native.prevent="handleLogin">Login
+      </el-button>
     </el-form>
   </div>
 </template>
 
 <script>
+  import {login} from '@/api/user'
+
   export default {
     name: "index",
     data() {
@@ -49,13 +53,19 @@
       }
     },
     methods: {
-      handleLogin(){
+      handleLogin() {
         this.loading = true
-        this.$message({
-          message: 'Login Success',
-          type: 'success'
-        });
-        this.$router.push("/home/dashboard")
+
+        login(this.loginForm).then(response => {
+          console.log(response)
+          this.loading = false
+          this.$message({
+            message: 'Login Success',
+            type: 'success'
+          });
+          this.$router.push("/home/dashboard")
+        })
+
       }
     }
   }
@@ -78,11 +88,13 @@
     margin: 0 auto;
     overflow: hidden;
   }
-  .login-username{
+
+  .login-username {
     margin-left: 10%;
     width: 80%;
     background-color: #293543;
   }
+
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: #889aa4;
@@ -90,6 +102,7 @@
     width: 30px;
     display: inline-block;
   }
+
   .title-container {
     position: relative;
   }

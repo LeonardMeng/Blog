@@ -38,18 +38,22 @@
           actualData: [120, 82, 91, 154, 162, 140, 145]
         },
         visitDetail: [{
+          date: '2020-10-01',
           ip: '192.168.1.1',
           option: 'Login',
           status: 'Success'
         }, {
+          date: '2020-10-01',
           ip: '192.168.1.1',
           option: 'Login',
           status: 'Success'
         }, {
+          date: '2020-10-01',
           ip: '192.168.1.1',
           option: 'Login',
           status: 'Success'
         }, {
+          date: '2020-10-01',
           ip: '192.168.1.1',
           option: 'Click Something',
           status: 'Exception Catched'

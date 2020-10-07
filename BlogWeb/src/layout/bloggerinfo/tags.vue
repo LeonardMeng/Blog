@@ -7,13 +7,13 @@
       All Tags
     </el-row>
     <el-row style="margin-top:5px">
-      <el-tag class="tags-item" v-for="i in tagsList" :key="i">{{i}}</el-tag>
+      <el-tag class="tags-item" v-for="i in tagsList" :key="i.id" @click="searchArticleByTag(i)">{{i.tagName}}</el-tag>
     </el-row>
   </div>
 </template>
 
 <script>
-  import axios from "../../util/axios/axios";
+  import {getAllTag} from '@/api/tag'
   export default {
     name: "Tags",
     data() {
@@ -23,27 +23,16 @@
       }
     },
     mounted() {
-      this.GetAllTags()
+      this.getAllTags()
     },
     methods: {
-      GetAllTags() {
-        axios({
-          data: this.params,
-          type: 'GET',
-          path: '/tag/getalltags',
-          fn: (data) => {
-            if (data.statusCode == 200) {
-              console.log(data.data)
-              this.tagsList = data.data
-
-            } else {
-              self.$message.error(data.message)
-            }
-            self.listLoading = false
-          },
-          errFn: (err) => {
-          }
+      getAllTags() {
+        getAllTag(this.params).then(response => {
+          this.tagsList = response.data
         })
+      },
+      searchArticleByTag(i){
+        this.$emit('searchByTag', i)
       }
     }
   }
@@ -65,6 +54,7 @@
     color: white;
     margin-top: 3px;
     margin-left: 2px;
+    cursor: pointer;
     margin-right:2px;
     background: #2a579a;
   }

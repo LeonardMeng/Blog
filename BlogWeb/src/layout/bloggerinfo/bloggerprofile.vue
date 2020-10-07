@@ -15,7 +15,7 @@
     </el-row>
 
     <el-row class="motto">
-      Motto: Mens et Manus
+      Mens et Manus
     </el-row>
 
   </div>
@@ -29,27 +29,27 @@
 
 <style scoped>
   .picture {
-    margin-top: 10%;
-    margin-left: 20%;
+    margin-top: 20%;
+    margin-left: 30%;
+    margin-bottom: 10%;
     z-index: 0;
-    width: 60%;
+    width: 40%;
   }
   .nickname {
     text-align: center;
     color: white;
-    font-family: "Microsoft YaHei",serif;
     font-size: 24px;
   }
   .realname {
+    margin-top: 5%;
     text-align: center;
     color: white;
-    font-family: "Microsoft YaHei",serif;
     font-size: 24px;
   }
   .motto {
+    margin-top: 5%;
     text-align: center;
     color: white;
-    font-family: "Microsoft YaHei",serif;
-    font-size: 24px;
+    font-size: 20px;
   }
 </style>
