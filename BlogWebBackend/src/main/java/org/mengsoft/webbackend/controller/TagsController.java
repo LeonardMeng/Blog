@@ -23,7 +23,7 @@ public class TagsController {
     private TagService tagService;
 
     @RequestMapping(value="/tag/getalltags", method= RequestMethod.POST, produces="application/json")
-    public List<Tag> GetUserByUsername(){
-        return this.tagService.GetAllTags();
+    public List<Tag> getUserByUsername(){
+        return this.tagService.getAllTags();
     }
 }

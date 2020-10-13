@@ -64,5 +64,7 @@ public class UserService {
     }
 
 
-
+    public List<User> getAllUser() {
+        return this.userMapper.selectAll();
+    }
 }

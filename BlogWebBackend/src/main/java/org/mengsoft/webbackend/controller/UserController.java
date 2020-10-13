@@ -44,16 +44,21 @@ public class UserController {
 
     @ApiOperation("Get Userinfo by UserID")
     @RequestMapping(value="/user/getuserbyid", method= RequestMethod.POST, produces="application/json")
-    public User GetUserById(){
+    public User getUserById(){
         User user = null;
         Assert.notNull(user, "User is not existed.");
         return user;
     }
 
     @RequestMapping(value="/user/getuserbyusername", method= RequestMethod.POST, produces="application/json")
-    public List<User> GetUserByUsername(@RequestBody String username){
+    public List<User> getUserByUsername(@RequestBody String username){
 
         return this.userService.GetUserByUsername(username);
+    }
+    @RequestMapping(value="/user/getAllUser", method= RequestMethod.POST, produces="application/json")
+    public List<User> getAllUser(@RequestBody String username){
+
+        return this.userService.getAllUser();
     }
 
     @RequestMapping(value="/user/error", method= RequestMethod.GET, produces="application/json")
@@ -62,12 +67,12 @@ public class UserController {
     }
 
     @RequestMapping(value="/user/businesserror", method= RequestMethod.GET, produces="application/json")
-    public void BusinessError(){
+    public void businessError(){
         throw new BusinessException(ResponseCode.EMAIL_HAS_EXSITED);
     }
 
     @RequestMapping(value="/user/createuser", method= RequestMethod.POST, produces="application/json")
-    public String CreateUser(@RequestBody @Validated User user){
+    public String createUser(@RequestBody @Validated User user){
 
         return this.hello;
     }

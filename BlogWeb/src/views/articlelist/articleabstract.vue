@@ -33,6 +33,7 @@
 </template>
 
 <script>
+  import {getBlogOwner} from "@/api/user"
   export default {
     name: "ArticleAbstract",
     props: {
@@ -90,8 +91,10 @@
         this.createDate.year = this.articleInfo.createDate.substring(0, 4)
         this.createDate.month = this.convertMonth(this.articleInfo.createDate.substring(5, 7))
         this.createDate.day = this.articleInfo.createDate.substring(8, 10)
+        getBlogOwner()
       },
       readDetail(id){
+
         this.$router.push({name:'ReadArticle',params: {id:id}})
       }
     },

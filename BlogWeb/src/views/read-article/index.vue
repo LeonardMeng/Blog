@@ -55,6 +55,7 @@
         })
       },
       goBack() {
+        this.$router.push({name:'ArticleList'})
         console.log('go back');
       }
     }

@@ -24,8 +24,8 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @RequestMapping(value="/category/getallcategory", method= RequestMethod.POST, produces="application/json")
-    public List<Category> GetAllCategory(@RequestBody String username){
+    public List<Category> getAllCategory(@RequestBody String username){
 
-        return this.categoryService.GetAllCategory();
+        return this.categoryService.getAllCategory();
     }
 }

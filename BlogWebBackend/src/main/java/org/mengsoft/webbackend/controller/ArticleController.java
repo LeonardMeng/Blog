@@ -27,22 +27,22 @@ public class ArticleController {
     private ArticleService articleService;
 
     @RequestMapping(value="/article/getArticlesByBound", method= RequestMethod.POST, produces="application/json")
-    public Map<String, Object> GetArticlesByBound(@RequestBody SearchRequest searchRequest){
-        return this.articleService.GetArticlesByBound(searchRequest);
+    public Map<String, Object> getArticlesByBound(@RequestBody SearchRequest searchRequest){
+        return this.articleService.getArticlesByBound(searchRequest);
     }
 
     @RequestMapping(value="/article/searchArticleByCategory", method= RequestMethod.POST, produces="application/json")
-    public Map<String, Object> SearchArticleByCategory(@RequestBody SearchRequest searchRequest){
-        return this.articleService.SearchArticleByCategory(searchRequest);
+    public Map<String, Object> searchArticleByCategory(@RequestBody SearchRequest searchRequest){
+        return this.articleService.searchArticleByCategory(searchRequest);
     }
 
     @RequestMapping(value="/article/searchArticleByTag", method= RequestMethod.POST, produces="application/json")
-    public Map<String, Object> SearchArticleByTag(@RequestBody SearchRequest searchRequest){
-        return this.articleService.SearchArticleByTag(searchRequest);
+    public Map<String, Object> searchArticleByTag(@RequestBody SearchRequest searchRequest){
+        return this.articleService.searchArticleByTag(searchRequest);
     }
 
     @RequestMapping(value="/article/getArticleContent", method= RequestMethod.POST, produces="application/json")
-    public ArticleInfo GetArticleInfo(@RequestBody Map<String, String> param) throws IOException {
-        return this.articleService.GetArticleInfo(param.get("id"));
+    public ArticleInfo getArticleInfo(@RequestBody Map<String, String> param) throws IOException {
+        return this.articleService.getArticleInfo(param.get("id"));
     }
 }

@@ -15,7 +15,7 @@ public class TagService {
     @Resource
     private TagMapper tagMapper;
 
-    public List<Tag> GetAllTags() {
+    public List<Tag> getAllTags() {
         List<Tag> tagList = this.tagMapper.selectAll();
         return tagList;
     }

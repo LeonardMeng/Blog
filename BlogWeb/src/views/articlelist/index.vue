@@ -60,7 +60,7 @@
       },
       searchArticleByTag(i){
         this.loading = true
-        var param = {
+        const param = {
           keyword: i.tagName,
           paging: {
             currentPage: this.paging.currentPage,
@@ -68,14 +68,14 @@
           }
         }
         searchArticleByTag(param).then(response => {
-          var data = response.data
+          const data = response.data
           this.articleList = data.articleList
           this.paging.total = data.paging.total
         })
         this.loading = false
       },
       getArticlesByBound() {
-        var param = {
+        const param = {
           keyword: '',
           paging: {
             currentPage: this.paging.currentPage,
@@ -83,7 +83,7 @@
           }
         }
         getArticlesByBound(param).then(response => {
-          var data = response.data
+          const data = response.data
           this.articleList = data.articleList
           this.paging.total = data.paging.total
         })

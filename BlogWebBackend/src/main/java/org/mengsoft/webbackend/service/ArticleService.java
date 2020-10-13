@@ -29,7 +29,7 @@ public class ArticleService {
     @Resource
     private ArticleMapper articleMapper;
 
-    public Map<String, Object> GetArticlesByBound(SearchRequest searchRequest) {
+    public Map<String, Object> getArticlesByBound(SearchRequest searchRequest) {
         Paging paging = searchRequest.getPaging();
         Map<String, Integer> pagingMap = Tools.ConvertPaging(paging);
         Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -41,7 +41,7 @@ public class ArticleService {
         return resultMap;
     }
 
-    public ArticleInfo GetArticleInfo(String id) throws IOException {
+    public ArticleInfo getArticleInfo(String id) throws IOException {
         Article article = new Article();
         article.setId(Integer.parseInt(id));
         Article article2 = articleMapper.selectByPrimaryKey(article);
@@ -65,7 +65,7 @@ public class ArticleService {
         return articleInfo;
     }
 
-    public Map<String, Object> SearchArticleByTag(SearchRequest searchRequest) {
+    public Map<String, Object> searchArticleByTag(SearchRequest searchRequest) {
         String keyword = searchRequest.getKeyword();
         Paging paging = searchRequest.getPaging();
         Map<String, Integer> pagingMap = Tools.ConvertPaging(paging);
@@ -82,7 +82,7 @@ public class ArticleService {
         return resultMap;
     }
 
-    public Map<String, Object> SearchArticleByCategory(SearchRequest searchRequest) {
+    public Map<String, Object> searchArticleByCategory(SearchRequest searchRequest) {
         return null;
     }
 }

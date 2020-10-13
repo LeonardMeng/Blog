@@ -18,7 +18,7 @@ public class CategoryService {
 
     private List<MenuItem> menuItemList;
 
-    public List<Category> GetAllCategory() {
+    public List<Category> getAllCategory() {
         return categoryMapper.selectAll();
     }
 }
