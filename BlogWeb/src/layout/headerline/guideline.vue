@@ -20,7 +20,7 @@
 
 <script>
   import NavigationItem from "./navigation-item";
-  import {getAllCategory} from '@/api/category'
+  import {getCategoriesByUsername} from '@/api/category'
 
   export default {
     name: "GuideLine",
@@ -46,13 +46,14 @@
       },
       GenerateMenu() {
         var param = {username: 'LINGJUNM'}
-        getAllCategory(param).then(response => {
+        getCategoriesByUsername(param).then(response => {
           var maxLevel = 0
+          console.log(response)
           for (var i = 0; i < response.data.length; i++) {
             if (maxLevel < response.data[i].level) maxLevel = response.data[i].level
             if (response.data[i].father == '0') {
               this.menuList.push({
-                path: '/' + response.data[i].id, id: response.data[i].id,
+                path: '/' + response.data[i].categoryID, id: response.data[i].categoryID,
                 title: response.data[i].categoryName, children: [], father: response.data[i].father,
                 level: response.data[i].level
               })
@@ -63,7 +64,7 @@
             for (var j = 0; j < this.menuList.length; j++) {
               if (response.data[i].father == this.menuList[j].id && response.data[i].level == '2') {
                 this.menuList[j].children.push({
-                  path: '/' + response.data[i].id, id: response.data[i].id,
+                  path: '/' + response.data[i].categoryID, id: response.data[i].categoryID,
                   title: response.data[i].categoryName, children: [], father: response.data[i].father,
                   level: response.data[i].level
                 })
@@ -77,7 +78,7 @@
                 if (response.data[i].father == this.menuList[j].children[k].id && response.data[i].level == '3') {
 
                   this.menuList[j].children[k].children.push({
-                    path: '/' + response.data[i].id, id: response.data[i].id,
+                    path: '/' + response.data[i].categoryID, id: response.data[i].categoryID,
                     title: response.data[i].categoryName, children: [], father: response.data[i].father,
                     level: response.data[i].level
                   })

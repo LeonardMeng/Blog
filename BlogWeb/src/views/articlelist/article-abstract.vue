@@ -13,7 +13,7 @@
     <el-col class="abstract" :span="22" >
       <el-row class="article-title" >
         <el-col class="article-title-text">
-          <div @click="readDetail(articleInfo.id)">
+          <div @click="readDetail(articleInfo.articleID)">
             {{articleInfo.title}}
 
           </div>
@@ -93,9 +93,9 @@
         this.createDate.day = this.articleInfo.createDate.substring(8, 10)
         getBlogOwner()
       },
-      readDetail(id){
+      readDetail(articleID){
 
-        this.$router.push({name:'ReadArticle',params: {id:id}})
+        this.$router.push({name:'ReadArticle',params: {id:articleID}})
       }
     },
     watch: {

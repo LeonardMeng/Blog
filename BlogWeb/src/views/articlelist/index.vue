@@ -8,7 +8,7 @@
     </el-row>
     <el-row class="article-items" v-loading="loading">
       <article-abstract v-for="articleInfo in articleList"
-                        :key="articleInfo.id"
+                        :key="articleInfo.articleID"
                         :articleInfo="articleInfo">
       </article-abstract>
 
@@ -30,8 +30,8 @@
 </template>
 
 <script>
-  import {getArticlesByBound, searchArticleByTag} from '@/api/article'
-  import ArticleAbstract from "./articleabstract"
+  import {getArticlesByUsernameAndBound, searchArticleByTag} from '@/api/article'
+  import ArticleAbstract from "./article-abstract"
 
   export default {
     name: "ArticleList",
@@ -82,7 +82,7 @@
             pageSize: this.paging.pageSize,
           }
         }
-        getArticlesByBound(param).then(response => {
+        getArticlesByUsernameAndBound(param).then(response => {
           const data = response.data
           this.articleList = data.articleList
           this.paging.total = data.paging.total

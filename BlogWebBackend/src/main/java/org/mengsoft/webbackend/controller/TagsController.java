@@ -5,10 +5,7 @@ import org.mengsoft.webbackend.model.Tag;
 import org.mengsoft.webbackend.model.User;
 import org.mengsoft.webbackend.service.TagService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,8 +19,8 @@ public class TagsController {
     @Resource
     private TagService tagService;
 
-    @RequestMapping(value="/tag/getalltags", method= RequestMethod.POST, produces="application/json")
-    public List<Tag> getUserByUsername(){
-        return this.tagService.getAllTags();
+    @RequestMapping(value="/tag/getTagsByUsername", method= RequestMethod.POST, produces="application/json")
+    public List<Tag> selectTagsByUsername(@RequestHeader("User") String username){
+        return this.tagService.selectTagsByUsername(username);
     }
 }

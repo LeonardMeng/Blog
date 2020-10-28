@@ -20,4 +20,8 @@ public class TagService {
         return tagList;
     }
 
+    public List<Tag> selectTagsByUsername(String username) {
+        return this.tagMapper.selectTagsByUsername(username);
+    }
+
 }

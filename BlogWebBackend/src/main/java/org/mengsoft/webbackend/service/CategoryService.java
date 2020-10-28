@@ -21,4 +21,8 @@ public class CategoryService {
     public List<Category> getAllCategory() {
         return categoryMapper.selectAll();
     }
+
+    public List<Category> getCategoriesByUsername(String username) {
+        return this.categoryMapper.selectCategoriesByUsername(username);
+    }
 }

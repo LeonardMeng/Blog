@@ -22,6 +22,10 @@ service.interceptors.request.use(
     //   // please modify it according to the actual situation
     //   config.headers['X-Token'] = getToken()
     // }
+    const url = window.location.href.split('/')
+    if (url.length >= 5) {
+      config.headers['User'] = url[4]
+    }
     config.headers['Access-Token'] = getToken()
     return config
   },

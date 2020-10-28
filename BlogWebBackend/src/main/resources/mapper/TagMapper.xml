@@ -5,12 +5,24 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="ID" jdbcType="INTEGER" property="id" />
+    <id column="TAG_ID" jdbcType="INTEGER" property="tagID" />
     <result column="TAG_NAME" jdbcType="VARCHAR" property="tagName" />
     <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
     <result column="STATUS" jdbcType="VARCHAR" property="status" />
     <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
     <result column="OWNER" jdbcType="VARCHAR" property="owner" />
   </resultMap>
+  <select id="selectTagsByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+SELECT
+A.TAG_ID,
+A.TAG_NAME,
+A.DESCRIPTION,
+A.STATUS,
+A.CREATE_DATE,
+A.OWNER
+ FROM BASE_TAGS_INFO A
+LEFT JOIN BASE_USER_INFO B ON A.OWNER = B.USER_ID
+WHERE B.USER_NAME = #{username}
 
+    </select>
 </mapper>

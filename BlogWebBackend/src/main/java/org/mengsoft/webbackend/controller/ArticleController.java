@@ -7,10 +7,7 @@ import org.mengsoft.webbackend.model.ArticleInfo;
 import org.mengsoft.webbackend.service.ArticleService;
 import org.mengsoft.webbackend.service.TagService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -26,9 +23,10 @@ public class ArticleController {
     @Resource
     private ArticleService articleService;
 
-    @RequestMapping(value="/article/getArticlesByBound", method= RequestMethod.POST, produces="application/json")
-    public Map<String, Object> getArticlesByBound(@RequestBody SearchRequest searchRequest){
-        return this.articleService.getArticlesByBound(searchRequest);
+    @RequestMapping(value="/article/getArticlesByUsernameAndBound", method= RequestMethod.POST, produces="application/json")
+    public Map<String, Object> getArticlesByUsernameAndBound(@RequestHeader("User") String username,
+                                                  @RequestBody SearchRequest searchRequest){
+        return this.articleService.getArticlesByUsernameAndBound(searchRequest, username);
     }
 
     @RequestMapping(value="/article/searchArticleByCategory", method= RequestMethod.POST, produces="application/json")

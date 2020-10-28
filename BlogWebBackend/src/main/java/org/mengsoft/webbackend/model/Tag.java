@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "BASE_TAGS_INFO")
 public class Tag {
     @Id
-    @Column(name = "ID")
-    private Integer id;
+    @Column(name = "TAG_ID")
+    private Integer tagID;
 
     @Column(name = "TAG_NAME")
     private String tagName;
@@ -27,15 +27,15 @@ public class Tag {
     /**
      * @return ID
      */
-    public Integer getId() {
-        return id;
+    public Integer getTagID() {
+        return tagID;
     }
 
     /**
-     * @param id
+     * @param tagID
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTagID(Integer tagID) {
+        this.tagID = tagID;
     }
 
     /**

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import {getAllTag} from '@/api/tag'
+  import {getTagsByUsername} from '@/api/tag'
   export default {
     name: "Tags",
     data() {
@@ -23,11 +23,11 @@
       }
     },
     mounted() {
-      this.getAllTags()
+      this.getTagsByUsername()
     },
     methods: {
-      getAllTags() {
-        getAllTag(this.params).then(response => {
+      getTagsByUsername() {
+        getTagsByUsername(this.params).then(response => {
           this.tagsList = response.data
         })
       },

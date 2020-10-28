@@ -6,5 +6,5 @@ import org.mengsoft.webbackend.model.Tag;
 import tk.mybatis.mapper.common.Mapper;
 
 public interface TagMapper extends Mapper<Tag> {
-
+    List<Tag> selectTagsByUsername(String username);
 }

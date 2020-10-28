@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "BASE_ARTICLE_INFO")
 public class Article {
     @Id
-    @Column(name = "ID")
-    private Integer id;
+    @Column(name = "ARTICLE_ID")
+    private Integer articleID;
 
     @Column(name = "TITLE")
     private String title;
@@ -39,15 +39,15 @@ public class Article {
     /**
      * @return ID
      */
-    public Integer getId() {
-        return id;
+    public Integer getArticleID() {
+        return articleID;
     }
 
     /**
-     * @param id
+     * @param articleID
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setArticleID(Integer articleID) {
+        this.articleID = articleID;
     }
 
     /**

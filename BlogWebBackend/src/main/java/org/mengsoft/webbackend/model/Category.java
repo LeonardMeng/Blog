@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "BASE_CATEGORY_INFO")
 public class Category {
     @Id
-    @Column(name = "ID")
-    private Integer id;
+    @Column(name = "CATEGORY_ID")
+    private Integer categoryID;
 
     @Column(name = "CATEGORY_NAME")
     private String categoryName;
@@ -33,15 +33,15 @@ public class Category {
     /**
      * @return ID
      */
-    public Integer getId() {
-        return id;
+    public Integer getCategoryID() {
+        return categoryID;
     }
 
     /**
-     * @param id
+     * @param categoryID
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
     }
 
     /**

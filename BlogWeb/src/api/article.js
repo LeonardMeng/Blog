@@ -3,9 +3,9 @@
  */
 import request from '@/utils/request'
 
-export function getArticlesByBound(data) {
+export function getArticlesByUsernameAndBound(data) {
   return request({
-    url: '/article/getArticlesByBound',
+    url: '/article/getArticlesByUsernameAndBound',
     method: 'post',
     data
   })
