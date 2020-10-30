@@ -53,7 +53,7 @@
             if (maxLevel < response.data[i].level) maxLevel = response.data[i].level
             if (response.data[i].father == '0') {
               this.menuList.push({
-                path: '/' + response.data[i].categoryID, id: response.data[i].categoryID,
+                path: '/' + response.data[i].categoryName, id: response.data[i].categoryID,
                 title: response.data[i].categoryName, children: [], father: response.data[i].father,
                 level: response.data[i].level
               })
@@ -64,7 +64,7 @@
             for (var j = 0; j < this.menuList.length; j++) {
               if (response.data[i].father == this.menuList[j].id && response.data[i].level == '2') {
                 this.menuList[j].children.push({
-                  path: '/' + response.data[i].categoryID, id: response.data[i].categoryID,
+                  path: '/' + response.data[i].categoryName, id: response.data[i].categoryID,
                   title: response.data[i].categoryName, children: [], father: response.data[i].father,
                   level: response.data[i].level
                 })
@@ -78,7 +78,7 @@
                 if (response.data[i].father == this.menuList[j].children[k].id && response.data[i].level == '3') {
 
                   this.menuList[j].children[k].children.push({
-                    path: '/' + response.data[i].categoryID, id: response.data[i].categoryID,
+                    path: '/' + response.data[i].categoryName, id: response.data[i].categoryID,
                     title: response.data[i].categoryName, children: [], father: response.data[i].father,
                     level: response.data[i].level
                   })

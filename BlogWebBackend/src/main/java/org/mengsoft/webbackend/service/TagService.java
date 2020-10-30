@@ -1,5 +1,6 @@
 package org.mengsoft.webbackend.service;
 
+import tk.mybatis.mapper.entity.Example;
 import lombok.extern.slf4j.Slf4j;
 import org.mengsoft.webbackend.dao.TagMapper;
 import org.mengsoft.webbackend.model.Tag;
@@ -21,6 +22,9 @@ public class TagService {
     }
 
     public List<Tag> selectTagsByUsername(String username) {
+//        Example tagExample = new Example(Tag.class);
+//        Example.Criteria tagCriteria = tagExample.createCriteria();
+//        tagCriteria.andEqualTo("owner", username);
         return this.tagMapper.selectTagsByUsername(username);
     }
 

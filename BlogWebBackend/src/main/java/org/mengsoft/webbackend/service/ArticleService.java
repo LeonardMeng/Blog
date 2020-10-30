@@ -2,6 +2,8 @@ package org.mengsoft.webbackend.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.RowBounds;
+import org.mengsoft.webbackend.common.enums.ResponseCode;
+import org.mengsoft.webbackend.common.exceptions.BusinessException;
 import org.mengsoft.webbackend.common.utils.Paging;
 import org.mengsoft.webbackend.common.utils.SearchRequest;
 import org.mengsoft.webbackend.common.utils.Tools;
@@ -32,9 +34,9 @@ public class ArticleService {
   @Resource
   private ArticleMapper articleMapper;
   @Resource
+  private UserService userService;
+  @Resource
   private UserMapper userMapper;
-
-
 
 
   public Map<String, Object> getArticlesByUsernameAndBound(SearchRequest searchRequest,
@@ -42,30 +44,17 @@ public class ArticleService {
     Map<String, Object> resultMap = new HashMap<String, Object>();
     Paging paging = searchRequest.getPaging();
     Map<String, Integer> pagingMap = Tools.ConvertPaging(paging);
+    HashMap <String,Object> queryMap=new HashMap<String,Object>();
 
-    Example articleExample = new Example(Article.class);
-    Example.Criteria articleCriteria = articleExample.createCriteria();
-    Example userExample = new Example(User.class);
-    Example.Criteria userCriteria = userExample.createCriteria();
+    queryMap.put("username", username);
+    queryMap.put("startNum", pagingMap.get("startNum"));
+    queryMap.put("endNum", pagingMap.get("endNum"));
+    List<Article> articleList = this.articleMapper.selectArticlesByUsernameAndBound(queryMap);
 
-    userCriteria.andEqualTo("userName", username);
-    List<User> userList = this.userMapper.selectByExample(userExample);
-
-    if (userList.size() > 0) {
-      User user = userList.get(0);
-      articleCriteria.andEqualTo("owner", user.getUserId());
-      List<Article> articleList = this.articleMapper.selectByRowBounds(new Article(),
-          new RowBounds(pagingMap.get("startNum"), paging.getPageSize()));
-      paging.setTotal(this.articleMapper.selectCount(new Article()));
-      resultMap.put("articleList", articleList);
-      resultMap.put("paging", paging);
-      return resultMap;
-    } else {
-      Assert.notNull(userList, "User is not existed.");
-      resultMap.put("articleList", null);
-      resultMap.put("paging", paging);
-      return resultMap;
-    }
+    paging.setTotal(this.articleMapper.selectCountArticlesByUsername(username));
+    resultMap.put("articleList", articleList);
+    resultMap.put("paging", paging);
+    return resultMap;
 
 
   }

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mengsoft.webbackend.common.utils.SearchRequest;
 import org.mengsoft.webbackend.model.Article;
 import org.mengsoft.webbackend.model.ArticleInfo;
+import org.mengsoft.webbackend.model.User;
 import org.mengsoft.webbackend.service.ArticleService;
 import org.mengsoft.webbackend.service.TagService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,27 +21,28 @@ import java.util.Map;
 @Slf4j
 public class ArticleController {
 
-    @Resource
-    private ArticleService articleService;
+  @Resource
+  private ArticleService articleService;
 
-    @RequestMapping(value="/article/getArticlesByUsernameAndBound", method= RequestMethod.POST, produces="application/json")
-    public Map<String, Object> getArticlesByUsernameAndBound(@RequestHeader("User") String username,
-                                                  @RequestBody SearchRequest searchRequest){
-        return this.articleService.getArticlesByUsernameAndBound(searchRequest, username);
-    }
+  @RequestMapping(value = "/article/getArticlesByUsernameAndBound", method = RequestMethod.POST, produces = "application/json")
+  public Map<String, Object> getArticlesByUsernameAndBound(
+      @RequestHeader("User") String username,
+      @RequestBody SearchRequest searchRequest) {
+    return this.articleService.getArticlesByUsernameAndBound(searchRequest, username);
+  }
 
-    @RequestMapping(value="/article/searchArticleByCategory", method= RequestMethod.POST, produces="application/json")
-    public Map<String, Object> searchArticleByCategory(@RequestBody SearchRequest searchRequest){
-        return this.articleService.searchArticleByCategory(searchRequest);
-    }
+  @RequestMapping(value = "/article/searchArticleByCategory", method = RequestMethod.POST, produces = "application/json")
+  public Map<String, Object> searchArticleByCategory(@RequestBody SearchRequest searchRequest) {
+    return this.articleService.searchArticleByCategory(searchRequest);
+  }
 
-    @RequestMapping(value="/article/searchArticleByTag", method= RequestMethod.POST, produces="application/json")
-    public Map<String, Object> searchArticleByTag(@RequestBody SearchRequest searchRequest){
-        return this.articleService.searchArticleByTag(searchRequest);
-    }
+  @RequestMapping(value = "/article/searchArticleByTag", method = RequestMethod.POST, produces = "application/json")
+  public Map<String, Object> searchArticleByTag(@RequestBody SearchRequest searchRequest) {
+    return this.articleService.searchArticleByTag(searchRequest);
+  }
 
-    @RequestMapping(value="/article/getArticleContent", method= RequestMethod.POST, produces="application/json")
-    public ArticleInfo getArticleInfo(@RequestBody Map<String, String> param) throws IOException {
-        return this.articleService.getArticleInfo(param.get("id"));
-    }
+  @RequestMapping(value = "/article/getArticleContent", method = RequestMethod.POST, produces = "application/json")
+  public ArticleInfo getArticleInfo(@RequestBody Map<String, String> param) throws IOException {
+    return this.articleService.getArticleInfo(param.get("id"));
+  }
 }

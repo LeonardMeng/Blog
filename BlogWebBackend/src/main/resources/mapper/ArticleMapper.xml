@@ -16,5 +16,32 @@
     <result column="MODIFY_DATE" jdbcType="DATE" property="modifyDate" />
     <result column="ARTICLE_TYPE" jdbcType="VARCHAR" property="articleType" />
   </resultMap>
+  <select id="selectArticlesByUsernameAndBound" parameterType="java.util.Map" resultMap="BaseResultMap">
+SELECT
+A.ARTICLE_ID,
+A.TITLE,
+A.ARTICLE_ABSTRACT,
+A.TAGS,
+A.URL,
+A.STATUS,
+A.OWNER,
+A.CREATE_DATE,
+A.MODIFY_DATE,
+A.ARTICLE_TYPE,
+A.RATE,
+A.PRIORITY
+FROM
+BASE_ARTICLE_INFO A LEFT JOIN BASE_USER_INFO B ON A.OWNER = B.USER_ID
+WHERE A.STATUS = 1 AND B.USER_NAME = #{username}
+LIMIT #{startNum}, #{endNum}
 
+    </select>
+  <select id="selectCountArticlesByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+SELECT
+COUNT(A.ARTICLE_ID)
+FROM
+BASE_ARTICLE_INFO A LEFT JOIN BASE_USER_INFO B ON A.OWNER = B.USER_ID
+WHERE A.STATUS = 1 AND B.USER_NAME = #{username}
+
+    </select>
 </mapper>

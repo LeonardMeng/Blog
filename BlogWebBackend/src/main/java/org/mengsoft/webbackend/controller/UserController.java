@@ -68,7 +68,7 @@ public class UserController {
 
     @RequestMapping(value="/user/businesserror", method= RequestMethod.GET, produces="application/json")
     public void businessError(){
-        throw new BusinessException(ResponseCode.EMAIL_HAS_EXSITED);
+        throw new BusinessException(ResponseCode.EMAIL_HAS_EXISTED);
     }
 
     @RequestMapping(value="/user/createuser", method= RequestMethod.POST, produces="application/json")

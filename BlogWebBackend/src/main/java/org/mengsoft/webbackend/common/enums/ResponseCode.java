@@ -5,8 +5,9 @@ package org.mengsoft.webbackend.common.enums;
 public enum ResponseCode {
 
     SUCCESS(200, "Success"),
-    EMAIL_HAS_EXSITED(20001, "Email is already exsited!"),
+    EMAIL_HAS_EXISTED(20001, "Email is already exsited!"),
     PARAM_IS_INVALID(20002, "Param is invalid."),
+    USER_IS_NOT_EXISTED(20003, "User is not existed."),
     SYSTEM_ERROR(10000, "System Error, Please Contact Admin.");
 
 
