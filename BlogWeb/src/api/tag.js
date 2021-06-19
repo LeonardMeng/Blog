@@ -3,9 +3,9 @@
  */
 import request from '@/utils/request'
 
-export function getTagsByUsername(data) {
+export function getAllTags(data) {
   return request({
-    url: '/tag/getTagsByUsername',
+    url: '/tag/getAllTags',
     method: 'post'
   })
 }

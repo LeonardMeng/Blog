@@ -4,7 +4,7 @@
 <template>
   <el-container>
     <el-header class="headerline">
-      <header-line></header-line>
+      <header-line @searchByCategories="searchByCategories"></header-line>
     </el-header>
     <el-container>
       <el-aside class="bloggerinfo" width="250px" style="background: white">
@@ -30,6 +30,10 @@
     methods: {
       searchByTag(tag){
         this.$refs.articleList.searchArticleByTag(tag)
+      },
+      searchByCategories(category){
+        var item = category[category.length - 1]
+        this.$refs.articleList.searchArticleByCategory(item.substring(1, item.length))
       }
     }
   }

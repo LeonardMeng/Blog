@@ -1,0 +1,1 @@
+#### how to use mavonEditor in nuxt.js

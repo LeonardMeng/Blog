@@ -24,10 +24,10 @@ public class CategoryService {
         return categoryMapper.selectAll();
     }
 
-    public List<Category> getCategoriesByUsername(String username) {
+    public List<Category> getAllCategories() {
 //        Example categoryExample = new Example(Category.class);
 //        Example.Criteria categoryCriteria = categoryExample.createCriteria();
 //        categoryCriteria.andEqualTo("owner", username);
-        return this.categoryMapper.selectCategoriesByUsername(username);
+        return this.categoryMapper.selectAll();
     }
 }

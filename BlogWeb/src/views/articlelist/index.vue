@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import {getArticlesByUsernameAndBound, searchArticleByTag} from '@/api/article'
+  import {getArticles} from '@/api/article'
   import ArticleAbstract from "./article-abstract"
 
   export default {
@@ -45,6 +45,12 @@
           total: 0,
           currentPage: 1,
           pageSize: 5
+        },
+        searchParams:{
+          keyword: '',
+          tags: '',
+          categories: '',
+          paging: {}
         }
       }
     },
@@ -52,41 +58,40 @@
       this.getArticlesByBound()
     },
     methods: {
-      handleSizeChange() {
-
+      handleSizeChange(val) {
+        this.paging.pageSize = val
+        this.searchParams.paging = this.paging
+        this.searchArticles();
       },
-      handleCurrentChange() {
-
+      handleCurrentChange(val) {
+        this.paging.currentPage = val
+        this.searchParams.paging = this.paging
+        this.searchArticles();
       },
       searchArticleByTag(i){
+        this.searchParams.tags = i.tagName
+        this.searchParams.paging = this.paging
+        this.searchArticles();
+      },
+      searchArticleByCategory(category){
+        this.searchParams.categories = category
+        this.searchParams.paging = this.paging
+        this.searchArticles();
+
+      },
+      getArticlesByBound() {
+        this.searchParams.paging = this.paging
+        this.searchArticles();
+      },
+      searchArticles(){
         this.loading = true
-        const param = {
-          keyword: i.tagName,
-          paging: {
-            currentPage: this.paging.currentPage,
-            pageSize: this.paging.pageSize,
-          }
-        }
-        searchArticleByTag(param).then(response => {
+        getArticles(this.searchParams).then(response => {
           const data = response.data
           this.articleList = data.articleList
           this.paging.total = data.paging.total
         })
         this.loading = false
-      },
-      getArticlesByBound() {
-        const param = {
-          keyword: '',
-          paging: {
-            currentPage: this.paging.currentPage,
-            pageSize: this.paging.pageSize,
-          }
-        }
-        getArticlesByUsernameAndBound(param).then(response => {
-          const data = response.data
-          this.articleList = data.articleList
-          this.paging.total = data.paging.total
-        })
+
       }
     }
   }

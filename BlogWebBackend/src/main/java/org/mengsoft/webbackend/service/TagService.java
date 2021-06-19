@@ -17,8 +17,7 @@ public class TagService {
     private TagMapper tagMapper;
 
     public List<Tag> getAllTags() {
-        List<Tag> tagList = this.tagMapper.selectAll();
-        return tagList;
+        return this.tagMapper.selectAll();
     }
 
     public List<Tag> selectTagsByUsername(String username) {

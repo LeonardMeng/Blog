@@ -20,7 +20,7 @@
 
 <script>
   import NavigationItem from "./navigation-item";
-  import {getCategoriesByUsername} from '@/api/category'
+  import {getAllCategories} from '@/api/category'
 
   export default {
     name: "GuideLine",
@@ -42,11 +42,13 @@
     },
     methods: {
       handleSelect(key, keyPath) {
+        console.log("Hello")
         console.log(key, keyPath);
+        this.$emit('searchByCategories', keyPath)
       },
       GenerateMenu() {
         var param = {username: 'LINGJUNM'}
-        getCategoriesByUsername(param).then(response => {
+        getAllCategories(param).then(response => {
           var maxLevel = 0
           console.log(response)
           for (var i = 0; i < response.data.length; i++) {

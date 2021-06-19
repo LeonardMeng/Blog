@@ -11,4 +11,5 @@ public interface ArticleMapper extends Mapper<Article> {
   List<Article> selectArticlesByUsernameAndBound(Map queryMap);
 //  List<Article> selectArticlesByUsername(String username);
   Integer selectCountArticlesByUsername(String username);
+  int selectMaxID();
 }

@@ -8,13 +8,25 @@
       </el-page-header>
     </el-row>
     <el-row class="article-content">
-      <markdown-it-vue class="md-body" :content="content" />
+<!--      <markdown-it-vue class="md-body" :content="content" />-->
+      <mavon-editor
+          class="md"
+          :value="content"
+          :subfield="false"
+          :defaultOpen="'preview'"
+          :toolbarsFlag="false"
+          :editable="false"
+          :scrollStyle="true"
+          :ishljs="true"
+      />
+
+<!--      <mavon-editor v-model="content"></mavon-editor>-->
     </el-row>
   </div>
 </template>
 
 <script>
-  import {getArticleContent, searchArticleByTag} from '@/api/article'
+  import {getArticleContent} from '@/api/article'
   import MarkdownItVue from 'markdown-it-vue'
   import 'markdown-it-vue/dist/markdown-it-vue.css'
   export default {
@@ -33,24 +45,27 @@
       this.getArticleContent()
     },
     methods: {
-      searchArticleByTag(i){
-        var param = {
-          keyword: i.tagName,
-          paging: {
-            currentPage: 1,
-            pageSize: 10,
-          }
-        }
-        searchArticleByTag(param).then(response => {
-          var data = response.data.articleList
-          this.articleList = data
-        })
-      },
+      // searchArticleByTag(i){
+      //   var param = {
+      //     keyword: i.tagName,
+      //     paging: {
+      //       currentPage: 1,
+      //       pageSize: 10,
+      //     }
+      //   }
+      //   searchArticleByTag(param).then(response => {
+      //     var data = response.data.articleList
+      //     this.articleList = data
+      //   })
+      // },
       getArticleContent() {
         var param = {id: this.$route.params.id}
         getArticleContent(param).then(response => {
           var data = response.data
           this.content = data.articleContain
+          console.log(data)
+          // var md = require('markdown-it')();
+          // this.content = md.render(this.content);
           this.articleTitle = data.title
         })
       },

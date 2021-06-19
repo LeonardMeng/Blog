@@ -7,7 +7,7 @@
         <web-logo></web-logo>
       </el-col>
       <el-col :span = "12">
-        <guide-line></guide-line>
+        <guide-line @searchByCategories="searchByCategories"></guide-line>
       </el-col>
       <el-col :span = "4">
         <search-box></search-box>
@@ -22,7 +22,12 @@
   import SearchBox from "./searchbox";
   export default {
     name: "HeaderLine",
-    components: { SearchBox, WebLogo, GuideLine}
+    components: { SearchBox, WebLogo, GuideLine},
+    methods: {
+      searchByCategories(category) {
+        this.$emit('searchByCategories', category)
+      }
+    }
   }
 </script>
 

@@ -20,9 +20,9 @@ public class CategoryController {
     @Resource
     private CategoryService categoryService;
 
-    @RequestMapping(value="/category/getCategoriesByUsername", method= RequestMethod.POST, produces="application/json")
-    public List<Category> getCategoriesByUsername(@RequestHeader("User") String username){
+    @RequestMapping(value="/category/getAllCategories", method= RequestMethod.POST, produces="application/json")
+    public List<Category> getAllCategories(){
 
-        return this.categoryService.getCategoriesByUsername(username);
+        return this.categoryService.getAllCategory();
     }
 }

@@ -3,9 +3,9 @@
  */
 import request from '@/utils/request'
 
-export function getArticlesByUsernameAndBound(data) {
+export function getArticles(data) {
   return request({
-    url: '/article/getArticlesByUsernameAndBound',
+    url: '/article/getArticles',
     method: 'post',
     data
   })
@@ -19,17 +19,25 @@ export function getArticleContent(data) {
   })
 }
 
-export function searchArticleByCategory(data) {
+export function getArticleById(data) {
   return request({
-    url: '/article/searchArticleByCategory',
+    url: '/article/getArticleById',
     method: 'post',
     data
   })
 }
 
-export function searchArticleByTag(data) {
+export function addArticle(data) {
   return request({
-    url: '/article/searchArticleByTag',
+    url: '/article/addArticle',
+    method: 'post',
+    data
+  })
+}
+
+export function saveArticleContent(data) {
+  return request({
+    url: '/article/saveArticleContent',
     method: 'post',
     data
   })

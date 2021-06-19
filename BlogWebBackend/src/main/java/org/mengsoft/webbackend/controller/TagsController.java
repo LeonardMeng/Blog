@@ -19,8 +19,8 @@ public class TagsController {
     @Resource
     private TagService tagService;
 
-    @RequestMapping(value="/tag/getTagsByUsername", method= RequestMethod.POST, produces="application/json")
-    public List<Tag> selectTagsByUsername(@RequestHeader("User") String username){
-        return this.tagService.selectTagsByUsername(username);
+    @RequestMapping(value="/tag/getAllTags", method= RequestMethod.POST, produces="application/json")
+    public List<Tag> getAllTags(){
+        return this.tagService.getAllTags();
     }
 }

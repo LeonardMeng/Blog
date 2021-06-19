@@ -5,9 +5,10 @@ import org.mengsoft.webbackend.model.User;
 
 @Data
 public class SearchRequest {
-    private User user;
+    private String tags;
+    private String categories;
     private String keyword;
     private Paging paging;
-    private Sorting sorting;
+    private String sorting;
 
 }

@@ -1,6 +1,8 @@
 package org.mengsoft.webbackend.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mengsoft.webbackend.common.utils.MultiRequest;
+import org.mengsoft.webbackend.common.utils.Request;
 import org.mengsoft.webbackend.common.utils.SearchRequest;
 import org.mengsoft.webbackend.model.Article;
 import org.mengsoft.webbackend.model.ArticleInfo;
@@ -24,25 +26,29 @@ public class ArticleController {
   @Resource
   private ArticleService articleService;
 
-  @RequestMapping(value = "/article/getArticlesByUsernameAndBound", method = RequestMethod.POST, produces = "application/json")
-  public Map<String, Object> getArticlesByUsernameAndBound(
-      @RequestHeader("User") String username,
+  @RequestMapping(value = "/article/getArticles", method = RequestMethod.POST, produces = "application/json")
+  public Map<String, Object> getArticles(
       @RequestBody SearchRequest searchRequest) {
-    return this.articleService.getArticlesByUsernameAndBound(searchRequest, username);
+    return this.articleService.getArticlesByKeywordAndBound(searchRequest);
+  }
+  @RequestMapping(value = "/article/getArticleById", method = RequestMethod.POST, produces = "application/json")
+  public Map<String, Object> getArticleById(
+      @RequestBody int id) {
+    System.out.println(id);
+    return null;
   }
 
-  @RequestMapping(value = "/article/searchArticleByCategory", method = RequestMethod.POST, produces = "application/json")
-  public Map<String, Object> searchArticleByCategory(@RequestBody SearchRequest searchRequest) {
-    return this.articleService.searchArticleByCategory(searchRequest);
-  }
 
-  @RequestMapping(value = "/article/searchArticleByTag", method = RequestMethod.POST, produces = "application/json")
-  public Map<String, Object> searchArticleByTag(@RequestBody SearchRequest searchRequest) {
-    return this.articleService.searchArticleByTag(searchRequest);
-  }
-
-  @RequestMapping(value = "/article/getArticleContent", method = RequestMethod.POST, produces = "application/json")
+  @RequestMapping(value = "/article/getArticleContent", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
   public ArticleInfo getArticleInfo(@RequestBody Map<String, String> param) throws IOException {
     return this.articleService.getArticleInfo(param.get("id"));
   }
+
+  @RequestMapping(value = "/article/addArticle", method = RequestMethod.POST, produces = "application/json")
+  public int addArticle(@RequestBody Map<String, String> param) throws IOException {
+
+    return this.articleService.insertArticle(param);
+  }
+
+
 }

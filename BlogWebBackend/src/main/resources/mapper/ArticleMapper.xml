@@ -44,4 +44,9 @@ BASE_ARTICLE_INFO A LEFT JOIN BASE_USER_INFO B ON A.OWNER = B.USER_ID
 WHERE A.STATUS = 1 AND B.USER_NAME = #{username}
 
     </select>
+  <select id="selectMaxID" parameterType="java.lang.String" resultType="java.lang.Integer">
+select MAX(ARTICLE_ID)
+    from BASE_ARTICLE_INFO
+
+    </select>
 </mapper>

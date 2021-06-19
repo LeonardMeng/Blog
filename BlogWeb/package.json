@@ -15,7 +15,9 @@
     "axios": "^0.20.0",
     "element-ui": "2.13.2",
     "js-cookie": "^2.2.1",
+    "markdown-it": "^12.0.6",
     "markdown-it-vue": "^1.1.4",
+    "mavon-editor": "^2.9.1",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.0.1"
@@ -36,6 +38,7 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "echarts": "^5.1.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",

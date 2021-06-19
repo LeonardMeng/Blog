@@ -3,9 +3,9 @@
  */
 import request from '@/utils/request'
 
-export function getCategoriesByUsername(data) {
+export function getAllCategories(data) {
   return request({
-    url: '/category/getCategoriesByUsername',
+    url: '/category/getAllCategories',
     method: 'post',
     data
   })

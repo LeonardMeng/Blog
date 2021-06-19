@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import {getTagsByUsername} from '@/api/tag'
+  import {getAllTags} from '@/api/tag'
   export default {
     name: "Tags",
     data() {
@@ -27,11 +27,14 @@
     },
     methods: {
       getTagsByUsername() {
-        getTagsByUsername(this.params).then(response => {
+        getAllTags(this.params).then(response => {
           this.tagsList = response.data
         })
       },
       searchArticleByTag(i){
+        // console.log(i.tagName)
+        // this.$router.push({path:'ArticleList',query: {tagName: i.tagName}})
+
         this.$emit('searchByTag', i)
       }
     }
