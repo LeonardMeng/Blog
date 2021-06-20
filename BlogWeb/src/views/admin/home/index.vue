@@ -66,14 +66,34 @@
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="3">
+<!--          <el-submenu index="3">-->
+<!--            <template slot="title">-->
+<!--              <i class="el-icon-bank-card"></i>-->
+<!--              <span>题库系统</span>-->
+<!--            </template>-->
+<!--            <el-menu-item-group>-->
+<!--              <el-menu-item index="2-1" @click="jumpTo('/admin/home/addarticle')">-->
+<!--                <template slot="title">-->
+<!--                  <i class="el-icon-document-add"></i>-->
+<!--                  <span>创建新题</span>-->
+<!--                </template>-->
+<!--              </el-menu-item>-->
+<!--              <el-menu-item index="2-2">-->
+<!--                <template slot="title">-->
+<!--                  <i class="el-icon-edit-outline"></i>-->
+<!--                  <span>Manage Articles</span>-->
+<!--                </template>-->
+<!--              </el-menu-item>-->
+<!--            </el-menu-item-group>-->
+<!--          </el-submenu>-->
+          <el-menu-item index="3" @click="jumpTo('/admin/home/questionBank')">
             <i class="el-icon-setting"></i>
-            <span slot="title">Categories</span>
+            <span slot="title">题库系统</span>
           </el-menu-item>
-          <el-menu-item index="4">
-            <i class="el-icon-setting"></i>
-            <span slot="title">Tags</span>
-          </el-menu-item>
+<!--          <el-menu-item index="4">-->
+<!--            <i class="el-icon-setting"></i>-->
+<!--            <span slot="title">Tags</span>-->
+<!--          </el-menu-item>-->
           <el-menu-item index="5">
             <i class="el-icon-setting"></i>
             <span slot="title">Setting</span>

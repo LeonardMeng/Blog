@@ -38,10 +38,8 @@
     },
     methods: {
       handleClick(tab, event) {
-        console.log(tab, event);
       },
       handleChange(value) {
-        console.log(value);
       }
     }
   }

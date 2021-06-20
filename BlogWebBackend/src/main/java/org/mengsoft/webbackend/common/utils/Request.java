@@ -1,13 +1,31 @@
 package org.mengsoft.webbackend.common.utils;
 
-public class Request {
-  public SearchRequest searchRequest;
+public class Request<E> {
+  private E model;
+  private String action;
+  private String info;
 
-  public SearchRequest getSearchRequest() {
-    return searchRequest;
+  public E getModel() {
+    return model;
   }
 
-  public void setSearchRequest(SearchRequest searchRequest) {
-    this.searchRequest = searchRequest;
+  public void setModel(E model) {
+    this.model = model;
+  }
+
+  public String getAction() {
+    return action;
+  }
+
+  public void setAction(String action) {
+    this.action = action;
+  }
+
+  public String getInfo() {
+    return info;
+  }
+
+  public void setInfo(String info) {
+    this.info = info;
   }
 }

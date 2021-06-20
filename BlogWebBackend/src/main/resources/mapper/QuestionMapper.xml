@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mengsoft.webbackend.dao.QuestionMapper">
+  <resultMap id="BaseResultMap" type="org.mengsoft.webbackend.model.Question">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="QUESTION_ID" jdbcType="INTEGER" property="questionId" />
+    <result column="QUESTION_NAME" jdbcType="VARCHAR" property="questionName" />
+    <result column="QUESTION_DETAIL" jdbcType="VARCHAR" property="questionDetail" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="CATEGORIES" jdbcType="INTEGER" property="categories" />
+    <result column="LEVEL" jdbcType="INTEGER" property="level" />
+    <result column="DIFFICULTY" jdbcType="VARCHAR" property="difficulty" />
+    <result column="FATHER" jdbcType="INTEGER" property="father" />
+    <result column="QUESTION_TYPE" jdbcType="VARCHAR" property="questionType" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="QUESTION_OPTION1" jdbcType="VARCHAR" property="questionOption1" />
+    <result column="QUESTION_OPTION2" jdbcType="VARCHAR" property="questionOption2" />
+    <result column="QUESTION_OPTION3" jdbcType="VARCHAR" property="questionOption3" />
+    <result column="QUESTION_OPTION4" jdbcType="VARCHAR" property="questionOption4" />
+    <result column="CHAPTER_ID" jdbcType="INTEGER" property="chapterId" />
+  </resultMap>
+  <select id="selectMaxID" parameterType="java.lang.String" resultType="java.lang.Integer">
+select MAX(QUESTION_ID)
+    from BASE_QUESTION_INFO
+
+    </select>
+</mapper>

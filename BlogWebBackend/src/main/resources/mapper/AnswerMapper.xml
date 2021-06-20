@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mengsoft.webbackend.dao.AnswerMapper">
+  <resultMap id="BaseResultMap" type="org.mengsoft.webbackend.model.Answer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="QUESTION_ID" jdbcType="INTEGER" property="questionId" />
+    <result column="QUESTION_ANSWER" jdbcType="VARCHAR" property="questionAnswer" />
+  </resultMap>
+</mapper>

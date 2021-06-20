@@ -8,6 +8,7 @@
       </el-col>
       <el-col :span = "12">
         <guide-line @searchByCategories="searchByCategories"></guide-line>
+
       </el-col>
       <el-col :span = "4">
         <search-box></search-box>

@@ -8,11 +8,13 @@
              text-color="white"
              active-text-color="white"
              @select="handleSelect">
-      <el-submenu index="2">
-        <template slot="title">Categories</template>
-        <navigation-item v-if="meniItemFlag" v-for="menu in menuList" :key="menu.path" :item="menu"/>
+      <el-submenu index="1">
+        <template slot="title"  >Categories</template>
+        <navigation-item  v-if="meniItemFlag" v-for="menu in menuList" :key="menu.path" :item="menu"/>
       </el-submenu>
-
+      <el-menu-item style="height: 52px" @click="changeSystem('/questionBank/exam')" index="2">题库系统</el-menu-item>
+      <el-menu-item style="height: 52px" index="3">Vue展示</el-menu-item>
+      <el-menu-item style="height: 52px" index="4">About me</el-menu-item>
     </el-menu>
   </div>
 
@@ -91,6 +93,9 @@
           this.meniItemFlag = true
 
         })
+      },
+      changeSystem(val){
+        this.$router.push(val)
       }
     }
   }
@@ -105,7 +110,8 @@
   }
 
   .guideline-menu {
-    width: 20%;
+    width: 80%;
+    height: 52px;
   }
 
   .el-submenu /deep/ .el-submenu__title {
