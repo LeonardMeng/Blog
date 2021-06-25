@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mengsoft.webbackend.dao.SubjectMapper">
+  <resultMap id="BaseResultMap" type="org.mengsoft.webbackend.model.Subject">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="SUBJECT_ID" jdbcType="INTEGER" property="subjectId" />
+    <result column="SUBJECT_NAME" jdbcType="VARCHAR" property="subjectName" />
+    <result column="FATHER_SUBJECT_NAME" jdbcType="VARCHAR" property="fatherSubjectName" />
+  </resultMap>
+</mapper>

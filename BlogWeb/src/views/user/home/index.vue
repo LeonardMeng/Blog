@@ -7,8 +7,8 @@
       <header-line @searchByCategories="searchByCategories"></header-line>
     </el-header>
     <el-container>
-      <el-aside class="bloggerinfo" width="250px" style="background: white">
-        <blogger-info @searchByTag="searchByTag"></blogger-info>
+      <el-aside class="bloggerinfo" width="250px" style="background: white" v-if="!isMobile">
+        <blogger-info @searchByTag="searchByTag" ></blogger-info>
       </el-aside>
       <el-main class="main-container">
         <!--          <el-row class="container-header">-->
@@ -27,6 +27,11 @@
   export default {
     name: "index",
     components: {HeaderLine, BloggerInfo},
+    data() {
+      return {
+        isMobile: false
+      }
+    },
     methods: {
       searchByTag(tag){
         this.$refs.articleList.searchArticleByTag(tag)
@@ -34,7 +39,20 @@
       searchByCategories(category){
         var item = category[category.length - 1]
         this.$refs.articleList.searchArticleByCategory(item.substring(1, item.length))
+      },
+      checkMobile() {
+
+        let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+
+        if(flag !== null){
+          this.isMobile = true
+        }
+
       }
+    },
+    mounted() {
+      this.checkMobile();
+
     }
   }
 </script>
@@ -55,6 +73,7 @@
   }
   .main-container {
     min-height: 1000px;
+    /*z-index: 100;*/
   }
   .container-header {
     margin-top: 3.5%;

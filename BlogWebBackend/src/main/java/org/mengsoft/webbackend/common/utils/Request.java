@@ -2,6 +2,8 @@ package org.mengsoft.webbackend.common.utils;
 
 public class Request<E> {
   private E model;
+  private Paging paging;
+  private String keyword;
   private String action;
   private String info;
 
@@ -27,5 +29,13 @@ public class Request<E> {
 
   public void setInfo(String info) {
     this.info = info;
+  }
+
+  public Paging getPaging() {
+    return paging;
+  }
+
+  public void setPaging(Paging paging) {
+    this.paging = paging;
   }
 }

@@ -9,6 +9,7 @@
     </el-row>
     <el-row class="article-content">
 <!--      <markdown-it-vue class="md-body" :content="content" />-->
+
       <mavon-editor
           class="md"
           :value="content"
@@ -63,9 +64,6 @@
         getArticleContent(param).then(response => {
           var data = response.data
           this.content = data.articleContain
-          console.log(data)
-          // var md = require('markdown-it')();
-          // this.content = md.render(this.content);
           this.articleTitle = data.title
         })
       },
@@ -97,5 +95,6 @@
   }
   .article-content{
     width: 90%;
+    z-index: 0;
   }
 </style>

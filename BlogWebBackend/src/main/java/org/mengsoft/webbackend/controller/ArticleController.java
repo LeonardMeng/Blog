@@ -28,8 +28,8 @@ public class ArticleController {
 
   @RequestMapping(value = "/article/getArticles", method = RequestMethod.POST, produces = "application/json")
   public Map<String, Object> getArticles(
-      @RequestBody SearchRequest searchRequest) {
-    return this.articleService.getArticlesByKeywordAndBound(searchRequest);
+      @RequestBody Request<Map<String, String>> param) {
+    return this.articleService.getArticlesByKeywordAndBound(param);
   }
   @RequestMapping(value = "/article/getArticleById", method = RequestMethod.POST, produces = "application/json")
   public Map<String, Object> getArticleById(

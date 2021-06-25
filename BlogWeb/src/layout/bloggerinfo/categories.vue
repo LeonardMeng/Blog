@@ -2,24 +2,11 @@
   Created by KanadeM on 2020/6/29
 -->
 <template>
-  <el-table
-    :data="tableData"
-    class="morelinks"
-    style="border: none"
-    :header-cell-style="{background:'#f7f7f7',color:'#32373a', border:'#d8d8d8 solid 1px'}"
-    :cell-style="{background:'white',color:'#32373a', border:'#d8d8d8 solid 1px'}"
-    row-key="id"
-    default-expand-all
-    :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
-
-    @row-click="JumptoCategory">
-    <el-table-column
-      prop="date"
-      label="All Categories"
-      width="250px"
-    >
-    </el-table-column>\
-  </el-table>
+  <div>
+    <el-row class="categories-title">
+      All Categories
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -70,7 +57,14 @@
 </script>
 
 <style scoped>
-  .el-table::before {
-    height: 0px;
+  .categories-title {
+    height: 50px;
+    background: #f7f7f7;
+    border: #d8d8d8 solid 1px;
+    color: black;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-bottom: 15px;
   }
 </style>

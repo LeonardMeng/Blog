@@ -8,7 +8,7 @@
       <img class="certification" src="static/img/OCP.png">
     </div>
     <links></links>
-<!--    <categories  style="visibility: hidden" class="categories"></categories>-->
+<!--    <categories class="categories"></categories>-->
     <tags class="all-tags" @searchByTag="searchByTag"></tags>
   </div>
 </template>

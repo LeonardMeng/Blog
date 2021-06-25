@@ -21,10 +21,12 @@
     <result column="QUESTION_OPTION3" jdbcType="VARCHAR" property="questionOption3" />
     <result column="QUESTION_OPTION4" jdbcType="VARCHAR" property="questionOption4" />
     <result column="CHAPTER_ID" jdbcType="INTEGER" property="chapterId" />
+
   </resultMap>
   <select id="selectMaxID" parameterType="java.lang.String" resultType="java.lang.Integer">
 select MAX(QUESTION_ID)
     from BASE_QUESTION_INFO
 
     </select>
+
 </mapper>

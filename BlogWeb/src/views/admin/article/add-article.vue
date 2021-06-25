@@ -7,11 +7,15 @@
       <el-tab-pane label="MarkDown" name="first">
         <markdown-article ></markdown-article>
       </el-tab-pane>
-      <el-tab-pane label="RichText" name="second">
+      <el-tab-pane label="管理文章" name="second">
 <!--        <rishtext-article></rishtext-article>-->
       </el-tab-pane>
-      <el-tab-pane label="LaTeX" name="third"></el-tab-pane>
-      <el-tab-pane label="Link" name="fourth"></el-tab-pane>
+      <el-tab-pane label="管理目录" name="third">
+        <manage-category></manage-category>
+      </el-tab-pane>
+      <el-tab-pane label="管理标签" name="fourth">
+        <manage-tags></manage-tags>
+      </el-tab-pane>
     </el-tabs>
 
   </div>
@@ -21,10 +25,14 @@
   import MarkdownItVue from 'markdown-it-vue'
   import 'markdown-it-vue/dist/markdown-it-vue.css'
   import MarkdownArticle from "./components/markdown-article";
+  import ManageTags from "./components/manage-tags";
+  import ManageCategory from "./components/manage-category";
   // import RishtextArticle from "./components/rishtext-article";
 
   export default {
     components: {
+      ManageCategory,
+      ManageTags,
       // RishtextArticle,
       MarkdownArticle,
       MarkdownItVue

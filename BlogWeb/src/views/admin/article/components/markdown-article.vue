@@ -3,65 +3,64 @@
 -->
 <template>
   <div>
-    <el-row class="article-title">
-      <el-col :span="2" class="article-title-title">
-        Title
-      </el-col>
-      <el-col :span="9">
-        <el-input v-model="article.title" placeholder="Pleas Input Title"></el-input>
-      </el-col>
+    <el-form :inline="true" :model="article" label-width="100px" style="width: 100%">
+      <el-row>
+        <el-form-item label="Title">
+          <el-input v-model="article.title" placeholder="Title"></el-input>
+        </el-form-item>
 
-    </el-row>
-    <el-row class="article-summary">
-      <el-col :span="2" class="article-author">
-        Description
-      </el-col>
-      <el-col :span="5">
-        <el-input v-model="article.articleAbstract"
-                  type="textarea"
-                  :rows="2"
-                  placeholder="Pleas Input Description"></el-input>
-      </el-col>
-      <el-col :span="2" class="article-categories">
-        Catagories
-      </el-col>
-      <el-col :span="5">
-        <el-cascader
-            v-model="article.url"
-            style="width: 100%"
-            :options="categoriesOptions"
-            :props="{ expandTrigger: 'hover' }"
-            @change="handleChange"></el-cascader>
-      </el-col>
-      <el-col :span="2" class="article-tags">
-        Tags
-      </el-col>
-      <el-col :span="5">
-        <el-select
-            v-model="article.tags"
-            multiple
-            style="width: 100%"
-            size="medium"
-            placeholder="Select">
-          <el-option
-              v-for="item in tagOptions"
-              :key="item.label"
-              :label="item.label"
-              :value="item.value">
-          </el-option>
-        </el-select>
-      </el-col>
-    </el-row>
+        <el-form-item label="Categories">
+          <el-cascader
+              v-model="article.url"
+              style="width: 100%"
+              :options="categoriesOptions"
+              :props="{ expandTrigger: 'hover' }"
+              @change="handleChange"></el-cascader>
+        </el-form-item>
+
+        <el-form-item label="Tags">
+          <el-select
+              v-model="article.tags"
+              multiple
+              style="width: 100%"
+              size="medium"
+              placeholder="Select">
+            <el-option
+                v-for="item in tagOptions"
+                :key="item.label"
+                :label="item.label"
+                :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item >
+      </el-row>
+      <el-row>
+        <el-form-item label="Abstract">
+          <el-input v-model="article.articleAbstract"
+                    type="textarea"
+                    :rows="10"
+                    class="text-input"
+                    placeholder="Pleas Input Description"></el-input>
+        </el-form-item>
+      </el-row>
+      <el-form-item>
+        <el-row style="margin-left: 40%;width: 120%">
+
+          <el-button type="primary" plain>Save as Draft</el-button>
+          <el-button type="success" plain @click="publishArticle()">Publish</el-button>
+        </el-row>
+      </el-form-item>
+    </el-form>
+
     <el-row>
       <el-col :span="16" class="article-operation">
-        <el-button type="primary" plain>Save as Draft</el-button>
-        <el-button type="success" plain @click="publishArticle()">Publish</el-button>
-        <el-button type="danger" plain>Cancel</el-button>
+
+<!--        <el-button type="danger" plain @click="articleReset()" :loading >R</el-button>-->
       </el-col>
-      <el-col :span="6" class="article-operation">
-        <el-button type="warning" plain>Create New Category</el-button>
-        <el-button type="warning" plain>Create New Tag</el-button>
-      </el-col>
+<!--      <el-col :span="6" class="article-operation">-->
+<!--        <el-button type="warning" plain>Create New Category</el-button>-->
+<!--        <el-button type="warning" plain>Create New Tag</el-button>-->
+<!--      </el-col>-->
     </el-row>
     <el-row class="article-textarea-bar">
       <el-col :span="11" class="article-textarea-title">
@@ -107,7 +106,7 @@
     data() {
       return {
         tagOptions: [],
-        handbook: "#### how to use mavonEditor in nuxt.js",
+        handbook: "",
         toolbars: {
           bold: true, // 粗体
           italic: true, // 斜体
@@ -288,6 +287,11 @@
         }
         addArticle(param).then(response => {
           console.log(response)
+          this.$message({
+            showClose: true,
+            message: '文章添加成功！',
+            type: 'success'
+          });
         })
         // saveArticleContent(param).then(response => {
         //   console.log(response.data)
@@ -296,6 +300,13 @@
         Object.assign(this.$data, this.$options.data())
         // this.$router.go(0)
       },
+      articleReset(){
+        this.$message({
+          message: '文章内容已重置',
+          type: 'warning'
+        });
+        Object.assign(this.$data, this.$options.data())
+      }
 
     },
     mounted() {
@@ -385,5 +396,8 @@
     margin-left: 2%;
     margin-top: 1%;
     min-height: 440px;
+  }
+  .text-input{
+    width: 300%;
   }
 </style>

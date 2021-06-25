@@ -14,6 +14,7 @@
 
 <script>
   import {getAllTags} from '@/api/tag'
+  import merge from "webpack-merge";
   export default {
     name: "Tags",
     data() {
@@ -35,7 +36,20 @@
         // console.log(i.tagName)
         // this.$router.push({path:'ArticleList',query: {tagName: i.tagName}})
 
-        this.$emit('searchByTag', i)
+        // this.$emit('searchByTag', i)
+
+        if(this.$router.currentRoute.path === '/ArticleList'){
+          this.$router.push({
+            query:merge(this.$route.query,{tags: i.tagName})
+          })
+        }else{
+          this.$router.push({
+            path: "/ArticleList",
+            query: {
+              tags: i.tagName
+            }
+          });
+        }
       }
     }
   }

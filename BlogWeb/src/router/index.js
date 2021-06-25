@@ -10,8 +10,18 @@ import Login from '@/views/admin/login/login'
 import Dashboard from '@/views/admin/dashboard/index'
 import AdminHome from '@/views/admin/home/index'
 import AddArticle from '@/views/admin/article/add-article'
+import ManageArticle from '@/views/admin/article/manage-article'
+
+
 import Exam from '@/views/user/question-bank/exam/index'
+import QuestionBankHome from '@/views/user/question-bank/index'
+import QuestionBankLogin from '@/views/user/question-bank/login/index.vue'
+
+
 import QuestionBank from '@/views/admin/question-bank/index'
+import Particles from '@/views/user/show/particles.vue'
+import {checkToken} from '@/api/sso'
+import Cookies from "js-cookie";
 
 Vue.use(Router)
 
@@ -25,7 +35,12 @@ const router = new Router({
         {
           path: '/ArticleList',
           name: 'ArticleList',
-          component: ArticleList
+          component: ArticleList,
+          props: route => ({
+            categories: route.query.categories,
+            tags: route.query.tags,
+            keyword: route.query.keyword
+          })
         }, {
           path: '/readarticle/:id',
           name: 'ReadArticle',
@@ -34,22 +49,42 @@ const router = new Router({
         {
           path: '/questionBank/exam',
           name: 'Exam',
-          component: Exam
+          component: Exam,
+          props: route => ({
+            chapters: route.query.chapters,
+            mode: route.query.mode,
+            number: route.query.number
+          })
+        },
+        {
+          path: '/questionBank/login',
+          name: 'QuestionBankLogin',
+          component: QuestionBankLogin
+        },
+        {
+          path: '/questionBank/Home',
+          name: 'QuestionBankHome',
+          component: QuestionBankHome
         }
       ]
-    },{
+    }, {
       path: '/login',
       name: 'LoginPage',
       component: Login
-    },{
+    }, {
       path: '/admin/home',
       name: 'AdminHome',
       component: AdminHome,
       children: [
         {
-          path: '/admin/home/addarticle',
+          path: '/admin/home/addArticle',
           name: 'AddArticle',
           component: AddArticle
+        },
+        {
+          path: '/admin/home/manageArticle',
+          name: 'ManageArticle',
+          component: ManageArticle
         },
         {
           path: '/admin/home/dashboard',
@@ -62,7 +97,7 @@ const router = new Router({
           component: QuestionBank
         }
       ]
-    },{
+    }, {
       path: '*',
       name: '404',
       component: page404
@@ -118,5 +153,37 @@ const router = new Router({
 //     }])
 //   }
 // )
+
+router.beforeEach((to,from,next)=>{
+
+  if(to.path.toLowerCase() === '/questionbank/home' || to.path === '/questionbank/exam'){
+    if(Cookies.get("Access-Token") === undefined)
+      return false
+    checkToken({}).then( response => {
+      if(response.data === true)
+        next()
+      else
+        this.$router.push('/questionBank/login')
+    })
+  } else {
+    next()
+  }
+  // if(to.matched.some(res=>res.meta.isLogin)){//判断是否需要登录
+  //   if (sessionStorage['username']) {
+  //     next();
+  //   }else{
+  //     next({
+  //       path:"/login",
+  //       query:{
+  //         redirect:to.fullPath
+  //       }
+  //     });
+  //   }
+  //
+  // }else{
+  //   next()
+  // }
+});
+
 export default router
 

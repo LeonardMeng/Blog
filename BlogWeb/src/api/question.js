@@ -3,10 +3,17 @@
  */
 import request from '@/utils/request'
 
-export function getAllQuestions(data) {
+export function getQuestionBySelection(data) {
   return request({
-    url: '/question/getAllQuestions',
-    method: 'get',
+    url: '/question/getQuestionBySelection',
+    method: 'post',
+    data
+  })
+}
+export function getQuestion(data) {
+  return request({
+    url: '/question/getQuestion',
+    method: 'post',
     data
   })
 }
@@ -22,6 +29,22 @@ export function getSolution(data) {
 export function addQuestion(data) {
   return request({
     url: '/question/addQuestion',
+    method: 'post',
+    data
+  })
+}
+
+export function addWrongRecord(data) {
+  return request({
+    url: '/question/addWrongRecord',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteWrongRecord(data) {
+  return request({
+    url: '/question/deleteWrongRecord',
     method: 'post',
     data
   })

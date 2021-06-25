@@ -26,6 +26,10 @@
     components: { SearchBox, WebLogo, GuideLine},
     methods: {
       searchByCategories(category) {
+        console.log(this.$route.path)
+        if(this.$route.path.toLowerCase() !== '/articlelist'){
+          this.$router.push('/ArticleList')
+        }
         this.$emit('searchByCategories', category)
       }
     }

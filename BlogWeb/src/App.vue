@@ -16,7 +16,8 @@ import 'mavon-editor/dist/css/index.css'
 import 'katex/dist/katex.min.css';
 import VueKatex from 'vue-katex';
 import 'katex/dist/katex.min.css';
-
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 Vue.use(VueKatex, {
   globalOptions: {
     //... Define globally applied KaTeX options here

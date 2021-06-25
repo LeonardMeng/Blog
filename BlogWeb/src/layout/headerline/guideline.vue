@@ -12,7 +12,7 @@
         <template slot="title"  >Categories</template>
         <navigation-item  v-if="meniItemFlag" v-for="menu in menuList" :key="menu.path" :item="menu"/>
       </el-submenu>
-      <el-menu-item style="height: 52px" @click="changeSystem('/questionBank/exam')" index="2">题库系统</el-menu-item>
+      <el-menu-item style="height: 52px" @click="changeSystem('/questionBank/login')" index="2">题库系统</el-menu-item>
       <el-menu-item style="height: 52px" index="3">Vue展示</el-menu-item>
       <el-menu-item style="height: 52px" index="4">About me</el-menu-item>
     </el-menu>
@@ -23,6 +23,7 @@
 <script>
   import NavigationItem from "./navigation-item";
   import {getAllCategories} from '@/api/category'
+  import merge from 'webpack-merge'
 
   export default {
     name: "GuideLine",
@@ -44,15 +45,29 @@
     },
     methods: {
       handleSelect(key, keyPath) {
-        console.log("Hello")
-        console.log(key, keyPath);
-        this.$emit('searchByCategories', keyPath)
+        var item = keyPath[keyPath.length - 1]
+
+        var categories = item.substring(1, item.length)
+        // this.$emit('searchByCategories', keyPath)
+        // console.log(this.$router.currentRoute.path)
+        if(this.$router.currentRoute.path === '/ArticleList'){
+          this.$router.push({
+            query:merge(this.$route.query,{categories: categories})
+          })
+        }else{
+          this.$router.push({
+            path: "/ArticleList",
+            query: {
+              categories: categories
+            }
+          });
+        }
       },
       GenerateMenu() {
         var param = {username: 'LINGJUNM'}
         getAllCategories(param).then(response => {
           var maxLevel = 0
-          console.log(response)
+
           for (var i = 0; i < response.data.length; i++) {
             if (maxLevel < response.data[i].level) maxLevel = response.data[i].level
             if (response.data[i].father == '0') {

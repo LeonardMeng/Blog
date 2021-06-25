@@ -3,6 +3,7 @@ import { MessageBox, Message } from 'element-ui'
 // import store from '@/store'
 import api from '@/static/setting'
 import { getToken } from '@/utils/auth'
+import Cookies from 'js-cookie'
 
 // create an axios instance
 const service = axios.create({
@@ -22,11 +23,20 @@ service.interceptors.request.use(
     //   // please modify it according to the actual situation
     //   config.headers['X-Token'] = getToken()
     // }
-    const url = window.location.href.split('/')
-    if (url.length >= 5) {
-      config.headers['User'] = url[4]
-    }
+    // const url = window.location.href.split('/')
+    // if (url.length >= 5) {
+    //   config.headers['User'] = url[4]
+    // }
     config.headers['Access-Token'] = getToken()
+
+    const user = Cookies.get("User")
+
+    if(user !== undefined){
+      // console.log("I'm not undefined")
+      config.headers['UserId'] = Cookies.get("UserId")
+    }
+    // config.headers['User'] = Cookies.get("User").userId
+    // console.log(config.headers)
     return config
   },
   error => {

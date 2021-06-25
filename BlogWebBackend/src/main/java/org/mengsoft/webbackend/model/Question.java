@@ -54,6 +54,8 @@ public class Question {
     @Column(name = "CHAPTER_ID")
     private Integer chapterId;
 
+
+
     /**
      * @return QUESTION_ID
      */

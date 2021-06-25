@@ -10,6 +10,7 @@ import org.mengsoft.webbackend.common.enums.ResponseCode;
 import org.mengsoft.webbackend.common.exceptions.BusinessException;
 import org.mengsoft.webbackend.common.utils.MultiRequest;
 import org.mengsoft.webbackend.common.utils.Paging;
+import org.mengsoft.webbackend.common.utils.Request;
 import org.mengsoft.webbackend.common.utils.SearchRequest;
 import org.mengsoft.webbackend.common.utils.Tools;
 import org.mengsoft.webbackend.dao.ArticleContentMapper;
@@ -49,18 +50,25 @@ public class ArticleService {
   private UserMapper userMapper;
 
 
-  public Map<String, Object> getArticlesByKeywordAndBound(SearchRequest searchRequest) {
+  public Map<String, Object> getArticlesByKeywordAndBound(Request<Map<String, String>> param) {
     Map<String, Object> resultMap = new HashMap<String, Object>();
-    Paging paging = searchRequest.getPaging();
+    Paging paging = param.getPaging();
 
     Example example = new Example(Article.class);
     Example.Criteria criteria = example.createCriteria();
 
-    String categories = searchRequest.getCategories() == null ? "" : searchRequest.getCategories();
-    String tags = searchRequest.getTags() == null ? "" : searchRequest.getTags();
-    String keyword = searchRequest.getKeyword() == null ? "" : searchRequest.getKeyword();
-    criteria.andLike("tags", "%" + tags + "%");
-    criteria.andLike("url", "%" + categories + "%");
+    Map<String, String> searchParam = param.getModel();
+    if(searchParam != null){
+      String categories = searchParam.get("categories") == null ? "" : searchParam.get("categories");
+      String tags = searchParam.get("tags") == null ? "" : searchParam.get("tags");
+      String sortBy =
+          searchParam.get("sortBy").equals("") ? "CREATE_DATE desc" : searchParam.get("sortBy");
+      String keyword = searchParam.get("keyword") == null ? "" : searchParam.get("keyword");
+      criteria.andLike("tags", "%" + tags + "%");
+      criteria.andLike("url", "%" + categories + "%");
+      example.setOrderByClause(sortBy);
+
+    }
 
     List<Article> articleList = this.articleMapper.selectByExampleAndRowBounds(example,
         new RowBounds((paging.getCurrentPage() - 1) * paging.getPageSize(),

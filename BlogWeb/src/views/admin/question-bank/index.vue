@@ -4,14 +4,19 @@
 <template>
   <div class="add-question-container">
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-      <el-tab-pane label="MarkDown" name="first">
+      <el-tab-pane label="增加题目" name="first">
         <add-question ></add-question>
       </el-tab-pane>
-      <el-tab-pane label="RichText" name="second">
-        <!--        <rishtext-article></rishtext-article>-->
+      <el-tab-pane label="管理题目" name="second">
+        <manage-question></manage-question>
       </el-tab-pane>
-      <el-tab-pane label="LaTeX" name="third"></el-tab-pane>
-      <el-tab-pane label="Link" name="fourth"></el-tab-pane>
+      <el-tab-pane label="管理目录" name="third"></el-tab-pane>
+      <el-tab-pane label="管理章节" name="fourth">
+        <manage-chapter>
+        </manage-chapter>
+      </el-tab-pane>
+      <el-tab-pane label="管理标签" name="fifth">
+      </el-tab-pane>
     </el-tabs>
 
   </div>
@@ -19,9 +24,11 @@
 
 <script>
   import AddQuestion from "./components/add-question";
+  import ManageQuestion from "./components/manage-question";
+  import ManageChapter from "./components/manage-chapter";
   export default {
     name: "index",
-    components: {AddQuestion},
+    components: {ManageChapter, ManageQuestion, AddQuestion},
     data() {
       return {
         activeName: 'first',

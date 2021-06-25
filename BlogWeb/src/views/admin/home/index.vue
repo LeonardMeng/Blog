@@ -35,7 +35,7 @@
     <div class="menu-bar">
       <el-col :span="24">
         <el-menu
-            default-active="2"
+            default-active="1"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
@@ -46,26 +46,30 @@
             <i class="el-icon-data-line"></i>
             <span slot="title">DashBoard</span>
           </el-menu-item>
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-document-copy"></i>
-              <span>Articles</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="2-1" @click="jumpTo('/admin/home/addarticle')">
-                <template slot="title">
-                  <i class="el-icon-document-add"></i>
-                  <span>Create Articles</span>
-                </template>
-              </el-menu-item>
-              <el-menu-item index="2-2">
-                <template slot="title">
-                  <i class="el-icon-edit-outline"></i>
-                  <span>Manage Articles</span>
-                </template>
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
+          <el-menu-item index="2" @click="jumpTo('/admin/home/addarticle')">
+            <i class="el-icon-document-copy"></i>
+            <span slot="title">文章管理</span>
+          </el-menu-item>
+<!--          <el-submenu index="2">-->
+<!--            <template slot="title">-->
+<!--              <i class="el-icon-document-copy"></i>-->
+<!--              <span>Articles</span>-->
+<!--            </template>-->
+<!--            <el-menu-item-group>-->
+<!--              <el-menu-item index="2-1" @click="jumpTo('/admin/home/addarticle')">-->
+<!--                <template slot="title">-->
+<!--                  <i class="el-icon-document-add"></i>-->
+<!--                  <span>Create Articles</span>-->
+<!--                </template>-->
+<!--              </el-menu-item>-->
+<!--              <el-menu-item index="2-2" @click="jumpTo('/admin/home/manageArticle')">-->
+<!--                <template slot="title">-->
+<!--                  <i class="el-icon-edit-outline"></i>-->
+<!--                  <span>Manage Articles</span>-->
+<!--                </template>-->
+<!--              </el-menu-item>-->
+<!--            </el-menu-item-group>-->
+<!--          </el-submenu>-->
 <!--          <el-submenu index="3">-->
 <!--            <template slot="title">-->
 <!--              <i class="el-icon-bank-card"></i>-->
@@ -117,10 +121,10 @@
     },
     methods: {
       handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+
       },
       handleClose(key, keyPath) {
-        console.log(key, keyPath);
+
       },
       jumpTo(router) {
         this.$router.push(router)
