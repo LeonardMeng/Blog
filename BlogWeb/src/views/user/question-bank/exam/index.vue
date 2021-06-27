@@ -13,6 +13,8 @@
     <!--      </div>-->
 
     <!--    </div>-->
+    <el-page-header @back="goBack" content="练习页面">
+    </el-page-header>
     <el-table
         :data="questionList"
 
@@ -27,6 +29,7 @@
           width="710">
         <template slot-scope="scope">
           <div v-katex="scope.row.questionDetail"></div>
+          <img style="width: 100%" v-if="scope.row.questionImage !== '' && scope.row.questionImage !== undefined" :src="scope.row.questionImage">
         </template>
       </el-table-column>
       <el-table-column
@@ -91,6 +94,9 @@
       }
     },
     methods: {
+      goBack(){
+        this.$router.push('/questionBank/home')
+      },
       getQuestion() {
         let param = {
           model: {
@@ -120,7 +126,8 @@
             this.questionList.push({
               questionId: questionList[i].questionId,
               questionDetail: questionList[i].questionDetail,
-              isWrong: flag
+              isWrong: flag,
+              questionImage: questionList[i].questionImage
             })
           }
 
@@ -136,7 +143,7 @@
         getSolution(param).then(response => {
           this.solution = response.data
         })
-        // console.log(question)
+        // // console.log(question)
       },
       handleClose() {
         this.dialogVisible = false

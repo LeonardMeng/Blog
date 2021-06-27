@@ -10,3 +10,11 @@ export function getAllSubject(data) {
     data
   })
 }
+
+export function getSubject(data) {
+  return request({
+    url: '/subject/getSubject',
+    method: 'post',
+    data
+  })
+}

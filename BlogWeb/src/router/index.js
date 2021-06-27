@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+
 import Home from '@/views/user/home/index'
 import ArticleList from '@/views/user/articlelist/index'
 import ReadArticle from '@/views/user/read-article/index'
@@ -154,17 +154,24 @@ const router = new Router({
 //   }
 // )
 
-router.beforeEach((to,from,next)=>{
-
-  if(to.path.toLowerCase() === '/questionbank/home' || to.path === '/questionbank/exam'){
-    if(Cookies.get("Access-Token") === undefined)
-      return false
-    checkToken({}).then( response => {
-      if(response.data === true)
+router.beforeEach((to, from, next) => {
+  console.log(to.path.toLowerCase())
+  if (to.path.toLowerCase() === '/questionbank/home' || to.path.toLowerCase() === '/questionbank/exam') {
+    if (Cookies.get("Access-Token") === undefined)
+      next('/questionBank/login')
+    checkToken({}).then(response => {
+      console.log(response.data)
+      if (response.data === true)
         next()
       else
-        this.$router.push('/questionBank/login')
-    })
+        next('/questionBank/login')
+    }).catch((err) => {
+
+        console.log(err)
+
+      }
+    )
+
   } else {
     next()
   }

@@ -82,7 +82,9 @@
                 message: '题目添加成功！',
                 type: 'success'
               });
-              Object.assign(this.$data, this.$options.data())
+              // Object.assign(this.$data, this.$options.data())
+              this.question.questionDetail = ''
+              this.solution = ''
             })
           } else {
             console.log('error submit!!');

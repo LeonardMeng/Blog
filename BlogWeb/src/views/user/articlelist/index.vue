@@ -56,7 +56,7 @@
           </el-row>
           <el-row v-if="tags !== undefined && tags !== ''" class="filter-item">
 
-            <el-row> Tag:</el-row>
+            <el-row class="filter-label"> Tag:</el-row>
             <el-row :span="24">
               <el-tag
                   @close="closeCategory('Tag')"
@@ -69,7 +69,7 @@
           </el-row>
 
         <el-row v-if="categories !== undefined && categories !== ''" class="filter-item">
-          <el-row> Category:</el-row>
+          <el-row class="filter-label"> Category:</el-row>
           <el-row :span="24">
             <el-tag
                 @close="closeCategory('Category')"
@@ -81,7 +81,7 @@
           </el-row>
         </el-row>
         <el-row class="filter-item">
-          <el-row>
+          <el-row class="filter-label">
             Sort By
           </el-row>
           <el-row>
@@ -198,8 +198,10 @@
           const data = response.data
           this.articleList = data.articleList
           this.paging.total = data.paging.total
+          this.loading = false
+
         })
-        this.loading = false
+
 
       }
     },
@@ -247,9 +249,13 @@
   .filter-item{
     margin-top:5%;
     margin-left: 5%;
+    color: #909398;
     /*border: 1px red solid;*/
   }
-
+  .filter-label{
+    margin-bottom: 5%;
+    color: #909398;
+  }
   .article-items {
     width: 90%
 

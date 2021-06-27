@@ -3,7 +3,9 @@
 -->
 <template>
   <el-container>
-    <el-header class="headerline">
+
+    <el-header class="header-line">
+
       <header-line @searchByCategories="searchByCategories"></header-line>
     </el-header>
     <el-container>
@@ -11,6 +13,7 @@
         <blogger-info @searchByTag="searchByTag" ></blogger-info>
       </el-aside>
       <el-main class="main-container">
+
         <!--          <el-row class="container-header">-->
         <!--            Container Header-->
         <!--          </el-row>-->
@@ -22,8 +25,8 @@
 </template>
 
 <script>
-  import HeaderLine from "@/layout/headerline/index";
-  import BloggerInfo from "@/layout/bloggerinfo/index";
+  import HeaderLine from "./layout/headerline/index";
+  import BloggerInfo from "./layout/bloggerinfo/index";
   export default {
     name: "index",
     components: {HeaderLine, BloggerInfo},
@@ -58,7 +61,7 @@
 </script>
 
 <style scoped>
-  .headerline {
+  .header-line {
     width: 102%;
     position: fixed;
     z-index: 999;

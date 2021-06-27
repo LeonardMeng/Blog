@@ -3,6 +3,7 @@
 -->
 <template>
   <div class="home-container">
+
     <div class="home-navigation">
       <el-row>
         <el-col :span="4">
@@ -32,6 +33,7 @@
         </el-col>
       </el-row>
     </div>
+
     <div class="menu-bar">
       <el-col :span="24">
         <el-menu

@@ -20,7 +20,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">Login</el-button>
-          <el-button type="primary" @click="skipLogin()">Skip Login</el-button>
+<!--          <el-button type="primary" @click="skipLogin()">Skip Login</el-button>-->
         </el-form-item>
       </el-form>
     </div>

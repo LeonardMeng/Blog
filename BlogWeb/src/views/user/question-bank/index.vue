@@ -3,7 +3,17 @@
 -->
 <template>
   <div class="generate-quiz">
+
+
     <el-form class="exam-setting" label-width="80px"  :inline="true">
+      <el-form-item label="领域">
+        <el-select v-model="field" placeholder="请选择科目">
+          <el-option key="Mathematics" label="Mathematics" value="Mathematics"></el-option>
+          <el-option key="Computer Science" label="Computer Science" value="Computer Science"></el-option>
+          <el-option key="Economics" label="Economics" value="Economics"></el-option>
+          <el-option key="Law" label="Law" value="Law"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="科目">
         <el-select v-model="subject" placeholder="请选择科目">
           <el-option
@@ -23,12 +33,12 @@
       </el-form-item>
       <el-form-item label="难度">
         <el-rate
-            style="margin-top: 3.5%"
+            style="margin-top: 9.5%"
             v-model="value2"
             :colors="colors">
         </el-rate>
       </el-form-item>
-      <el-form-item label="">
+      <el-form-item label="出题模式">
         <el-radio-group v-model="mode">
           <el-radio :label="1">混合出题</el-radio>
           <el-radio :label="2">只出新题</el-radio>
@@ -38,6 +48,7 @@
     </el-form>
     <div style="margin-left: 2%; margin-top: 3%">
       <el-transfer
+
           v-model="value" :data="chapterList"></el-transfer>
 
     </div>
@@ -52,7 +63,7 @@
 </template>
 
 <script>
-  import {getAllSubject} from '@/api/subject'
+  import {getSubject} from '@/api/subject'
   import {getChapter} from '@/api/chapter'
 
   export default {
@@ -68,18 +79,25 @@
         colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
         chapters: '',
         subject: '',
-        number: 10
+        number: 10,
+        field: 'Mathematics'
       };
 
     },
 
     methods: {
       handleChange(value, direction, movedKeys) {
-        console.log(value, direction, movedKeys);
+        // console.log(value, direction, movedKeys);
       },
-      getAllSubject() {
-        getAllSubject().then(response => {
-          this.subjectList = response.data
+      getSubject() {
+        var param = {
+          model: {
+            field: this.field
+          }
+        }
+        getSubject(param).then(response => {
+
+          this.subjectList = response.data.subjectList
         })
       },
       getChapter(val) {
@@ -112,12 +130,15 @@
       }
     },
     mounted() {
-      this.getAllSubject()
+      this.getSubject()
     },
     watch: {
       subject(val, oldVal) {//普通的watch监听
         this.getChapter(val)
       },
+      field(){
+        this.getSubject()
+      }
     }
   };
 </script>
@@ -146,5 +167,8 @@
     margin-top: 3%;
     display: inline-block;
     margin-left: 2%;
+  }
+  /deep/.el-transfer-panel{
+    width: 350px !important;
   }
 </style>

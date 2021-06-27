@@ -25,7 +25,7 @@ public class Question {
     private Integer level;
 
     @Column(name = "DIFFICULTY")
-    private String difficulty;
+    private Integer difficulty;
 
     @Column(name = "FATHER")
     private Integer father;
@@ -54,7 +54,11 @@ public class Question {
     @Column(name = "CHAPTER_ID")
     private Integer chapterId;
 
+    @Column(name = "QUESTION_IMAGE")
+    private String questionImage;
 
+    @Column(name = "SOLUTION_IMAGE")
+    private String solutionImage;
 
     /**
      * @return QUESTION_ID
@@ -143,14 +147,14 @@ public class Question {
     /**
      * @return DIFFICULTY
      */
-    public String getDifficulty() {
+    public Integer getDifficulty() {
         return difficulty;
     }
 
     /**
      * @param difficulty
      */
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(Integer difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -278,5 +282,33 @@ public class Question {
      */
     public void setChapterId(Integer chapterId) {
         this.chapterId = chapterId;
+    }
+
+    /**
+     * @return QUESTION_IMAGE
+     */
+    public String getQuestionImage() {
+        return questionImage;
+    }
+
+    /**
+     * @param questionImage
+     */
+    public void setQuestionImage(String questionImage) {
+        this.questionImage = questionImage;
+    }
+
+    /**
+     * @return SOLUTION_IMAGE
+     */
+    public String getSolutionImage() {
+        return solutionImage;
+    }
+
+    /**
+     * @param solutionImage
+     */
+    public void setSolutionImage(String solutionImage) {
+        this.solutionImage = solutionImage;
     }
 }
