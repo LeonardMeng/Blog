@@ -22,12 +22,15 @@
                   prop="questionDetail"
                   :rules="[{ required: true, message: '题目不能为空'}]">
 
-      <el-input class="question-input" :rows="10" v-model="question.questionDetail" type="textarea"></el-input>
-      <div class="question-input-view" v-katex="question.questionDetail"></div>
+<!--      <el-input class="question-input" :rows="10" v-model="question.questionDetail" type="textarea"></el-input>-->
+<!--      <div class="question-input-view" v-katex="question.questionDetail"></div>-->
+
+      <mavon-editor  @imgAdd="uploadImage()" v-model="question.questionDetail" style="width: 85%"></mavon-editor>
     </el-form-item>
     <el-form-item label="题目解析">
-      <el-input class="question-input" :rows="10" v-model="solution" type="textarea"></el-input>
-      <div class="question-input-view" v-katex="solution"></div>
+<!--      <el-input class="question-input" :rows="10" v-model="solution" type="textarea"></el-input>-->
+<!--      <div class="question-input-view" v-katex="solution"></div>-->
+      <mavon-editor v-model="solution" style="width: 85%"></mavon-editor>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="addQuestion('questionForm')">立即创建</el-button>
@@ -39,9 +42,11 @@
 <script>
   import {addQuestion} from '@/api/question'
   import {getChapter} from '@/api/chapter'
+  import MarkdownEditor from "./markdown-editor";
 
   export default {
     name: "add-question",
+    components: {MarkdownEditor},
     data() {
       return {
         chapterList: [],
@@ -67,6 +72,9 @@
           this.chapterList = response.data
 
         })
+      },
+      uploadImage(){
+
       },
       addQuestion(form) {
         var param = {

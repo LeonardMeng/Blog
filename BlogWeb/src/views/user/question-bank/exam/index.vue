@@ -28,8 +28,23 @@
           label="题目"
           width="710">
         <template slot-scope="scope">
-          <div v-katex="scope.row.questionDetail"></div>
-          <img style="width: 100%" v-if="scope.row.questionImage !== '' && scope.row.questionImage !== undefined" :src="scope.row.questionImage">
+          <div style="height: 70px">
+            <mavon-editor
+
+
+                class="question-item"
+                :value="scope.row.questionDetail"
+                :subfield="false"
+                :defaultOpen="'preview'"
+                :toolbarsFlag="false"
+                :editable="false"
+                :scrollStyle="true"
+                :ishljs="true"
+            ></mavon-editor>
+
+          </div>
+<!--          <div v-katex="scope.row.questionDetail"></div>-->
+<!--          <img style="width: 100%" v-if="scope.row.questionImage !== '' && scope.row.questionImage !== undefined" :src="scope.row.questionImage">-->
         </template>
       </el-table-column>
       <el-table-column
@@ -216,5 +231,27 @@
     margin-top: 4px;
     width: 12%;
   }
+  .question-item{
+    width: 90%;
+    height: 50px;
+    z-index: 0;
+  }
+  /*/deep/ .v-note-edit.divarea-wrapper {*/
+  /*  visibility: hidden;*/
+  /*}*/
+
+  /*/deep/ .v-note-op {*/
+  /*  visibility: hidden;*/
+  /*}*/
+
+  /*/deep/ .v-note-wrapper {*/
+  /*  box-shadow: none;*/
+  /*  !*margin-top: 80px;*!*/
+  /*  min-width: 300px;*/
+  /*  !*min-height: 300px;*!*/
+  /*  height: 50px;*/
+  /*  z-index: 0;*/
+  /*  text-align: left;*/
+  /*}*/
 
 </style>
