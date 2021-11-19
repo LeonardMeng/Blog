@@ -8,7 +8,7 @@
         <markdown-article ></markdown-article>
       </el-tab-pane>
       <el-tab-pane label="管理文章" name="second">
-<!--        <rishtext-article></rishtext-article>-->
+        <manage-article></manage-article>
       </el-tab-pane>
       <el-tab-pane label="管理目录" name="third">
         <manage-category></manage-category>
@@ -27,10 +27,12 @@
   import MarkdownArticle from "./components/markdown-article";
   import ManageTags from "./components/manage-tags";
   import ManageCategory from "./components/manage-category";
+  import ManageArticle from "./components/manage-article";
   // import RishtextArticle from "./components/rishtext-article";
 
   export default {
     components: {
+      ManageArticle,
       ManageCategory,
       ManageTags,
       // RishtextArticle,
