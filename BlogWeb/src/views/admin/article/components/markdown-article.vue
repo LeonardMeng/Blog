@@ -87,18 +87,7 @@
 <!--      </el-col>-->
 <!--      <div v-html="handbook"></div>-->
     </el-row>
-    <el-row class="article-items">
-      <el-pagination
-          class="pagination"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="paging.currentPage"
-          :page-sizes="[5, 10, 15, 20]"
-          :page-size="paging.pageSize"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="paging.total">
-      </el-pagination>
-    </el-row>
+
   </div>
 </template>
 
