@@ -1,8 +1,9 @@
 package org.mengsoft.webbackend.controller;
 
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.mengsoft.webbackend.common.utils.Request;
 import org.mengsoft.webbackend.model.Tag;
-import org.mengsoft.webbackend.model.User;
 import org.mengsoft.webbackend.service.TagService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
@@ -22,5 +23,15 @@ public class TagsController {
     @RequestMapping(value="/tag/getAllTags", method= RequestMethod.POST, produces="application/json")
     public List<Tag> getAllTags(){
         return this.tagService.getAllTags();
+    }
+
+    @RequestMapping(value="/tag/getTagsByBound", method= RequestMethod.POST, produces="application/json")
+    public List<Tag> getTagsByBound(@RequestBody Request<Map<String, String>> param){
+        return this.tagService.getTagsByBound(param);
+    }
+
+    @RequestMapping(value="/tag/addTag", method= RequestMethod.POST, produces="application/json")
+    public boolean addTag(@RequestBody Tag tag){
+        return this.tagService.addTag(tag);
     }
 }

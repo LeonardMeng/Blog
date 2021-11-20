@@ -9,3 +9,19 @@ export function getAllTags(data) {
     method: 'post'
   })
 }
+
+export function getTagsByBound(data) {
+  return request({
+    url: '/tag/getTagsByBound',
+    method: 'post'
+  })
+}
+
+export function addTag(data) {
+  return request({
+    url: '/tag/addTag',
+    method: 'post'
+  })
+}
+
+

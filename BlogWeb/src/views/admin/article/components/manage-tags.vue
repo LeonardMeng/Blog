@@ -11,7 +11,7 @@
         <el-input v-model="tag.tagName" style="width: 30%"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button type="primary" @click="addTag">立即创建</el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import {getAllTags} from '@/api/tag'
+  import {getAllTags, addTag} from '@/api/tag'
   export default {
     name: "manage-tags",
     data() {
@@ -80,7 +80,7 @@
 
         })
       },
-      onSubmit(){
+      addTag(){
         var param = {
           model: this.chapter
         }
