@@ -2,6 +2,7 @@ package org.mengsoft.webbackend.controller;
 
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.mengsoft.webbackend.common.utils.Paging;
 import org.mengsoft.webbackend.common.utils.Request;
 import org.mengsoft.webbackend.model.Tag;
 import org.mengsoft.webbackend.service.TagService;
@@ -26,7 +27,9 @@ public class TagsController {
     }
 
     @RequestMapping(value="/tag/getTagsByBound", method= RequestMethod.POST, produces="application/json")
-    public List<Tag> getTagsByBound(@RequestBody Request<Map<String, String>> param){
+    public List<Tag> getTagsByBound(@RequestBody(required = false) Request<Map<String, String>> param) {
+//        System.out.println(param);
+//        return null;
         return this.tagService.getTagsByBound(param);
     }
 

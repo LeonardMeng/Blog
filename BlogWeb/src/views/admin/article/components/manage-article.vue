@@ -127,11 +127,12 @@ export default {
         paging: this.paging
 
       }
+      console.log(this.searchParams)
       getArticles(this.searchParams).then(response => {
         const data = response.data
         this.articleList = data.articleList
         this.paging.total = data.paging.total
-        console.log(this.articleList)
+        // console.log(this.articleList)
         this.loading = false
 
       })

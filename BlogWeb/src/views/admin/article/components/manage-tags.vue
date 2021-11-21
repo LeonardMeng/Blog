@@ -40,11 +40,23 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-row class="article-items">
+      <el-pagination
+          class="pagination"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="paging.currentPage"
+          :page-sizes="[5, 10, 15, 20]"
+          :page-size="paging.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="paging.total">
+      </el-pagination>
+    </el-row>
   </div>
 </template>
 
 <script>
-  import {getAllTags, addTag} from '@/api/tag'
+  import {getTagsByBound, addTag} from '@/api/tag'
   export default {
     name: "manage-tags",
     data() {
@@ -64,18 +76,42 @@
         tag: {
           tagID: '',
           tagName: ''
+        },
+        searchParams: {
+          paging: {}
+        },
+        paging: {
+          total: 0,
+          currentPage: 1,
+          pageSize: 5
         }
       }
     },
     methods: {
+      handleSizeChange(val) {
+      },
+      handleCurrentChange(val) {
+      },
+
       handleEdit(index, row) {
         console.log(index, row);
       },
       handleDelete(index, row) {
         console.log(index, row);
       },
-      getAllTags() {
-        getAllTags().then(response => {
+      getTagsByBound() {
+        this.loading = true
+        this.searchParams = {
+          // model: {
+          //   categories: this.categories,
+          //   tags: this.tags,
+          //   sortBy: this.sortBy
+          // },
+          paging: this.paging
+
+        }
+        console.log(this.searchParams)
+        getTagsByBound(this.searchParams).then(response => {
           this.tagList = response.data
 
         })
@@ -100,11 +136,18 @@
 
     },
     mounted() {
-      this.getAllTags()
+      this.getTagsByBound()
     }
   }
 </script>
 
 <style scoped>
 
+.pagination {
+  margin-top: 1%;
+  background: white;
+  color: #343b3f;
+  border: solid 0px white;
+  float: right;
+}
 </style>

@@ -13,14 +13,16 @@ export function getAllTags(data) {
 export function getTagsByBound(data) {
   return request({
     url: '/tag/getTagsByBound',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 
 export function addTag(data) {
   return request({
     url: '/tag/addTag',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 
