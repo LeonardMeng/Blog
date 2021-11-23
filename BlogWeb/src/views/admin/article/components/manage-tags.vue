@@ -18,7 +18,7 @@
         :data="tagList.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
         style="width: 100%">
       <el-table-column
-          label="Date"
+          label="ID"
           prop="tagID">
       </el-table-column>
       <el-table-column
@@ -83,14 +83,18 @@
         paging: {
           total: 0,
           currentPage: 1,
-          pageSize: 5
+          pageSize: 10
         }
       }
     },
     methods: {
       handleSizeChange(val) {
+        this.paging.pageSize = val
+        this.getTagsByBound()
       },
       handleCurrentChange(val) {
+        this.paging.currentPage = val
+        this.getTagsByBound()
       },
 
       handleEdit(index, row) {
@@ -102,18 +106,14 @@
       getTagsByBound() {
         this.loading = true
         this.searchParams = {
-          // model: {
-          //   categories: this.categories,
-          //   tags: this.tags,
-          //   sortBy: this.sortBy
-          // },
           paging: this.paging
-
         }
-        console.log(this.searchParams)
+        // console.log(this.searchParams)
         getTagsByBound(this.searchParams).then(response => {
-          this.tagList = response.data
-
+          var res = response.data
+          this.tagList = res.tagList
+          this.paging = res.paging
+          this.loading = false
         })
       },
       addTag(){

@@ -27,7 +27,7 @@ public class TagsController {
     }
 
     @RequestMapping(value="/tag/getTagsByBound", method= RequestMethod.POST, produces="application/json")
-    public List<Tag> getTagsByBound(@RequestBody(required = false) Request<Map<String, String>> param) {
+    public Map<String, Object> getTagsByBound(@RequestBody(required = false) Request<Map<String, String>> param) {
 //        System.out.println(param);
 //        return null;
         return this.tagService.getTagsByBound(param);
