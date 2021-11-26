@@ -107,7 +107,7 @@ export default {
       paging: {
         total: 0,
         currentPage: 1,
-        pageSize: 5
+        pageSize: 10
       }
     }
   },

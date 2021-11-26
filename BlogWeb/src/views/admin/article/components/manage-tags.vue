@@ -7,7 +7,7 @@
 
 
     <el-form ref="form" :model="tag" label-width="80px">
-      <el-form-item label="章节名称">
+      <el-form-item label="标签名称">
         <el-input v-model="tag.tagName" style="width: 30%"></el-input>
       </el-form-item>
       <el-form-item>

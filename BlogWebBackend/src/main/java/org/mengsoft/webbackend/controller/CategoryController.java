@@ -1,6 +1,8 @@
 package org.mengsoft.webbackend.controller;
 
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.mengsoft.webbackend.common.utils.Request;
 import org.mengsoft.webbackend.model.Category;
 import org.mengsoft.webbackend.model.MenuItem;
 import org.mengsoft.webbackend.model.User;
@@ -24,5 +26,11 @@ public class CategoryController {
     public List<Category> getAllCategories(){
 
         return this.categoryService.getAllCategory();
+    }
+
+    @RequestMapping(value="/category/getCategoriesByBound", method= RequestMethod.POST, produces="application/json")
+    public Map<String, Object> getCategoriesByBound(@RequestBody Request<Map<String, String>> param){
+
+        return this.categoryService.getCategoriesByBound(param);
     }
 }

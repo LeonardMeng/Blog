@@ -10,3 +10,11 @@ export function getAllCategories(data) {
     data
   })
 }
+
+export function getCategoriesByBound(data) {
+  return request({
+    url: '/category/getCategoriesByBound',
+    method: 'post',
+    data
+  })
+}
