@@ -32,7 +32,7 @@ public class SwaggerConfig {
     public Docket CreatRestApi(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .enable(swaggerEnabled)
+                .enable(true)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("org.mengsoft.webbackend"))
                 .paths(PathSelectors.any())
